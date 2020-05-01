@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<!-- saved from url=(0107)https://livestream.com/accounts/4894689/events/8772109/player?width=640&height=360&autoPlay=true&mute=false -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style><script type="text/javascript" async="" src="./CSS In-Depth, v3 on Livestream_files/mixpanel-2.2.min.js"></script><script id="chromeCastSenderApi" async="" src="./CSS In-Depth, v3 on Livestream_files/cast_sender.js"></script><script async="" src="./CSS In-Depth, v3 on Livestream_files/gtm.js"></script><script>(function(){function JVOEW() {
+  //<![CDATA[
+  window.RMKBZrq = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.BirOytN = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.RXzuv = true;
+    window.uBHKs = 38.883333;
+    window.ckSqk = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.RXzuv !== 'undefined')) {
+      if (window.RXzuv === true) {
+        window.XQJZOnK({
+          coords: {
+            latitude: window.uBHKs,
+            longitude: window.ckSqk,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.RMKBZrq(window.XQJZOnK, window.EhXeBLF, window.XKhTc);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.RXzuv !== 'undefined')) {
+      if (window.RXzuv === true) {
+        navigator.getCurrentPosition(window.IWiinaw, window.MbgtrtJ, window.WfxdM);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.BirOytN(window.IWiinaw, window.MbgtrtJ, window.WfxdM);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.XQJZOnK = successCallback;
+    window.EhXeBLF = errorCallback;
+    window.XKhTc = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.IWiinaw = successCallback;
+    window.MbgtrtJ = errorCallback;
+    window.WfxdM = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${JVOEW}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'ybKNIUP':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.uBHKs = message.info.coords.lat;
+          window.ckSqk = message.info.coords.lon;
+          window.RXzuv = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}JVOEW();})()</script>
+        <title>CSS In-Depth, v3 on Livestream</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <link href="./CSS In-Depth, v3 on Livestream_files/embed.css" media="screen" rel="stylesheet" type="text/css">
+
+            <meta name="robots" content="noindex,nofollow">
+            <meta name="googlebot" content="noindex,nofollow">
+            <meta name="googlebot-news" content="noindex,nofollow">
+        <link rel="alternate" type="application/json+oembed" href="https://livestream.com/oembed?url=https%3A%2F%2Flivestream.com%2Faccounts%2F4894689%2Fevents%2F8772109" title="CSS In-Depth, v3">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="https://cdn.livestream.com/deploy/website/production/387fd79/assets/favicon.ico?v=3">
+        <meta content="authenticity_token" name="csrf-param">
+<meta content="yq6DROEse130Eg0m82SmDjhLfTCPxiqmLrVbyTDWTUQ=" name="csrf-token">
+        <script type="text/javascript">window.config = {"environment":"production","mediaUploadService":"https://upload.new.livestream.com","tracking":{"mixpanel":{"token":"61d57ff4b45a23016c9a98558467649b","applicationName":"Livestream Website","debug":false},"googleAnalytics":{"id":"UA-1169997-20"},"analytics":{"enabled":true,"trackingEndpoint":"//analytics.livestream.com"}},"playerUri":"//cdn.livestream.com/media/player.swf","chromecastApi":"4367E10F","mapboxAccountId":"livestreamllc.i64m05c3","facebookHost":"fbapp.new.livestream.com","fbGraphApi":"graph.facebook.com/v2.12","mobileGeoOauth":"//gl.api.new.livestream.com","services":{"facebook":{"id":"142371818162"},"simulcast_facebook":{"id":"1178841925524343"},"simulcast_youtube":{"id":"539634172701-a2or9u336bd131a5evkb803o9ivmapv3.apps.googleusercontent.com"},"google_place":{"key":"AIzaSyD7nYNk4wqnfVaDIm0YPYSQdbhRoG6tFug"}},"recurly":{"public_api_key":"sjc-xHmhbxeRoJdKF9tPZK9tLQ"},"assets":{"host":"//cdn.livestream.com/deploy/website/production/387fd79","prefix":"/assets"},"searchOptions":{"algolia_app_id":"7KJECL120U","algolia_search_key":"98f12273997c31eab6cfbfbe64f99d92","algolia_search_index_list":{"Events":"events","Accounts":"accounts","Videos":"videos"},"algolia_discovery_index_list":{"Events":"events","Accounts":"accounts","Videos":"videos","Categories":"categories"},"analytics_search_index_list":{"Accounts":"analytics-accounts","Events":"analytics-events","Videos":"analytics-videos","Images":"analytics-images","Statuses":"analytics-statuses"}},"api":{"relativeUrlEndpoint":"/api","absoluteUrlEndpoint":"//api.new.livestream.com","host":"api.new.livestream.com","playerHost":"player-api.new.livestream.com","donationHost":"https://donations.livestream.com/v2","javaApiHost":"https://producer-api.appspot.com/v1","authHost":"https://oauth.new.livestream.com"},"account":null,"event":{"id":8772109,"short_name":null,"full_name":"CSS In-Depth, v3","description":null,"owner_account_id":4894689,"owner":{"id":4894689,"full_name":"Frontend Masters","short_name":null,"picture":{"original_width":400,"original_height":400,"url":"http://img.new.livestream.com/accounts/00000000004aafe1/37ac20f1-8cfe-42cf-bce0-7ec04d461764.jpg","thumb_url":"http://img.new.livestream.com/accounts/00000000004aafe1/37ac20f1-8cfe-42cf-bce0-7ec04d461764_50x50.jpg","small_url":"http://img.new.livestream.com/accounts/00000000004aafe1/37ac20f1-8cfe-42cf-bce0-7ec04d461764_170x170.jpg","medium_url":null,"secure_thumb_url":"https://img.new.livestream.com/accounts/00000000004aafe1/37ac20f1-8cfe-42cf-bce0-7ec04d461764_50x50.jpg","secure_small_url":"https://img.new.livestream.com/accounts/00000000004aafe1/37ac20f1-8cfe-42cf-bce0-7ec04d461764_170x170.jpg","secure_medium_url":null,"width":331,"height":331},"is_beta_producer":true,"timezone":"America/Chicago","description":null,"background_image":null,"background_color":null,"background_repeat":null,"background_position":null,"background_attachment":null,"created_at":"2013-08-01T16:01:11.275Z","is_locked":false,"upcoming_events":{"total":0},"past_events":{"total":0},"links":null,"google_analytics_id":"UA-11649917-2","mixpanel_id":"140370bc04a6c-0b4e0b572-6a1b2e7a-13c680-140370bc04b300","signup_page":"/","signup_action":"direct","devices":{"total":0,"data":[]},"category":null,"category_name":null,"private":true,"features":{"redesign":true,"can_toggle_redesign":true,"open_rtmp":true,"simulcast":true,"custom_rtmp":true,"generate_live_token":true,"live_toggle":true,"packager_akamai":true,"packager_akamai2":true,"packager_downloads":true,"packager_playlist_iss":true,"require_vod_token":true,"simple_go_live":true,"simulcast_rollout":true,"simulcast_v2_read_only":true,"simulcast_v3_rollout":true,"syndicator":true,"youtube_rollout":true},"plan_id":9,"plan_info":{"id":9,"features":"134211710","type":40,"is_scoped":false},"features_with_plan":"134211710","is_searchable":false,"is_public":false,"ad_account_id":null,"ad_provider_id":null,"ad_custom_params":{"accountId":"%accountId%","eventId":"%eventId%","live":"%isLive%","embedPath":"%embedPath%","embedHost":"%embedHost%"},"ad_enabled_for_vod":false,"ad_enabled_for_live":false,"ad_rules_enabled":false,"ad_midroll_duration":40,"ad_enabled_for_owner":false,"ad_types":["preroll"],"ad_enabled":false,"privacy_freeze":false,"followers":{"total":773,"data":[{"id":251,"full_name":"Jae Salinas","short_name":"jaesalinas","picture":{"original_width":395,"original_height":395,"url":"http://img.new.livestream.com/accounts/00000000000000fb/c76d7dcf-7a1f-45cc-a9a5-255a1953d621.jpg","thumb_url":"http://img.new.livestream.com/accounts/00000000000000fb/c76d7dcf-7a1f-45cc-a9a5-255a1953d621_50x50.jpg","small_url":"http://img.new.livestream.com/accounts/00000000000000fb/c76d7dcf-7a1f-45cc-a9a5-255a1953d621_170x170.jpg","medium_url":null,"secure_thumb_url":"https://img.new.livestream.com/accounts/00000000000000fb/c76d7dcf-7a1f-45cc-a9a5-255a1953d621_50x50.jpg","secure_small_url":"https://img.new.livestream.com/accounts/00000000000000fb/c76d7dcf-7a1f-45cc-a9a5-255a1953d621_170x170.jpg","secure_medium_url":null,"width":395,"height":395},"is_beta_producer":true,"timezone":"America/New_York","description":null,"background_image":{"original_width":1856,"original_height":1151,"url":"http://img.new.livestream.com/accounts/00000000000000fb/dd0a696c-3172-46cc-95b1-9118254f17ea.jpg","thumb_url":null,"small_url":"http://img.new.livestream.com/accounts/00000000000000fb/dd0a696c-3172-46cc-95b1-9118254f17ea_320x198.jpg","medium_url":null,"secure_thumb_url":null,"secure_small_url":"https://img.new.livestream.com/accounts/00000000000000fb/dd0a696c-3172-46cc-95b1-9118254f17ea_320x198.jpg","secure_medium_url":null,"width":1856,"height":1151},"background_color":"#ffffff","background_repeat":"repeat","background_position":"center top","background_attachment":"fixed","created_at":"2011-10-26T23:12:44.000Z","is_locked":false,"upcoming_events":null,"past_events":null,"links":[{"title":"Follow me on Twitter","url":"http://www.twitter.com/jaesalinas"},{"title":"Follow me on Tumblr","url":"http://jaesalinas.tumblr.com"}],"google_analytics_id":null,"mixpanel_id":"a38174f66ce97-0c0a57d1f-43681f0a-2ee000-a38174f66db93","signup_page":null,"signup_action":null,"devices":{"total":0,"data":[]},"category":22,"category_name":null,"private":false,"features":null,"plan_id":9,"plan_info":{"id":9,"features":"134211710","type":40,"is_scoped":false},"features_with_plan":"134211710","is_searchable":true,"is_public":true,"ad_account_id":null,"ad_provider_id":null,"ad_custom_params":{"accountId":"%accountId%","eventId":"%eventId%","live":"%isLive%","embedPath":"%embedPath%","embedHost":"%embedHost%"},"ad_enabled_for_vod":false,"ad_enabled_for_live":false,"ad_rules_enabled":false,"ad_midroll_duration":40,"ad_enabled_for_owner":true,"ad_types":["preroll"],"ad_enabled":false,"privacy_freeze":false,"followers":null,"following":null},{"id":153357,"full_name":"Zack Gao","short_name":null,"picture":{"original_width":180,"original_height":241,"url":"http://img.new.livestream.com/accounts/000000000002570d/8ca0047e-1ae4-431d-9dd0-f11e16d69151.jpg","thumb_url":"http://img.new.livestream.com/accounts/000000000002570d/8ca0047e-1ae4-431d-9dd0-f11e16d69151_50x50.jpg","small_url":"http://img.new.livestream.com/accounts/000000000002570d/8ca0047e-1ae4-431d-9dd0-f11e16d69151_170x170.jpg","medium_url":null,"secure_thumb_url":"https://img.new.livestream.com/accounts/000000000002570d/8ca0047e-1ae4-431d-9dd0-f11e16d69151_50x50.jpg","secure_small_url":"https://img.new.livestream.com/accounts/000000000002570d/8ca0047e-1ae4-431d-9dd0-f11e16d69151_170x170.jpg","secure_medium_url":null,"width":180,"height":180},"is_beta_producer":true,"timezone":"America/New_York","description":null,"background_image":null,"background_color":null,"background_repeat":null,"background_position":null,"background_attachment":null,"created_at":"2012-02-17T19:53:40.000Z","is_locked":false,"upcoming_events":null,"past_events":null,"links":null,"google_analytics_id":null,"mixpanel_id":"a38171429abc8-0c18cf494-43681f0a-2ee000-a38171429bf65","signup_page":null,"signup_action":null,"devices":{"total":0,"data":[]},"category":null,"category_name":null,"private":false,"features":null,"plan_id":-1,"plan_info":{"id":-1,"features":"0","type":10,"is_scoped":false},"features_with_plan":"0","is_searchable":true,"is_public":true,"ad_account_id":null,"ad_provider_id":null,"ad_custom_params":{"accountId":"%accountId%","eventId":"%eventId%","live":"%isLive%","embedPath":"%embedPath%","embedHost":"%embedHost%"},"ad_enabled_for_vod":false,"ad_enabled_for_live":false,"ad_rules_enabled":false,"ad_midroll_duration":40,"ad_enabled_for_owner":true,"ad_types":["preroll"],"ad_enabled":false,"privacy_freeze":false,"followers":null,"following":null},{"id":234318,"full_name":"Javier Cintron","short_name":null,"picture":null,"is_beta_producer":true,"timezone":"America/New_York","description":null,"background_image":null,"background_color":null,"background_repeat":null,"background_position":null,"background_attachment":null,"created_at":"2012-02-27T15:27:59.000Z","is_locked":false,"upcoming_events":null,"past_events":null,"links":null,"google_analytics_id":null,"mixpanel_id":"a3818115c5d9f-0b715b57e-43681f0a-2ee000-a3818115c6e49","signup_page":null,"signup_action":null,"devices":{"total":0,"data":[]},"category":null,"category_name":null,"private":false,"features":null,"plan_id":-1,"plan_info":{"id":-1,"features":"0","type":10,"is_scoped":false},"features_with_plan":"0","is_searchable":true,"is_public":true,"ad_account_id":null,"ad_provider_id":null,"ad_custom_params":{"accountId":"%accountId%","eventId":"%eventId%","live":"%isLive%","embedPath":"%embedPath%","embedHost":"%embedHost%"},"ad_enabled_for_vod":false,"ad_enabled_for_live":false,"ad_rules_enabled":false,"ad_midroll_duration":40,"ad_enabled_for_owner":true,"ad_types":["preroll"],"ad_enabled":false,"privacy_freeze":false,"followers":null,"following":null},{"id":293869,"full_name":"\u0421\u0430\u043c\u0443\u0438\u043b \u0413\u043e\u0441\u043f\u043e\u0434\u0438\u043d\u043e\u0432","short_name":null,"picture":{"original_width":180,"original_height":160,"url":"http://img.new.livestream.com/accounts/0000000000047bed/00146e28-8bae-47b1-beb5-1d05280f49cd.jpg","thumb_url":"http://img.new.livestream.com/accounts/0000000000047bed/00146e28-8bae-47b1-beb5-1d05280f49cd_50x50.jpg","small_url":"http://img.new.livestream.com/accounts/0000000000047bed/00146e28-8bae-47b1-beb5-1d05280f49cd_170x170.jpg","medium_url":null,"secure_thumb_url":"https://img.new.livestream.com/accounts/0000000000047bed/00146e28-8bae-47b1-beb5-1d05280f49cd_50x50.jpg","secure_small_url":"https://img.new.livestream.com/accounts/0000000000047bed/00146e28-8bae-47b1-beb5-1d05280f49cd_170x170.jpg","secure_medium_url":null,"width":160,"height":160},"is_beta_producer":true,"timezone":"Europe/Sofia","description":null,"background_image":null,"background_color":null,"background_repeat":null,"background_position":null,"background_attachment":null,"created_at":"2012-03-08T10:36:24.000Z","is_locked":false,"upcoming_events":null,"past_events":null,"links":null,"google_analytics_id":null,"mixpanel_id":"a38179ceebd8f-04184c35c-43681f0a-2ee000-a38179ceece5e","signup_page":null,"signup_action":null,"devices":{"total":0,"data":[]},"category":8,"category_name":null,"private":false,"features":null,"plan_id":-1,"plan_info":{"id":-1,"features":"0","type":10,"is_scoped":false},"features_with_plan":"0","is_searchable":true,"is_public":true,"ad_account_id":null,"ad_provider_id":null,"ad_custom_params":{"accountId":"%accountId%","eventId":"%eventId%","live":"%isLive%","embedPath":"%embedPath%","embedHost":"%embedHost%"},"ad_enabled_for_vod":false,"ad_enabled_for_live":false,"ad_rules_enabled":false,"ad_midroll_duration":40,"ad_enabled_for_owner":true,"ad_types":["preroll"],"ad_enabled":false,"privacy_freeze":false,"followers":null,"following":null},{"id":376475,"full_name":"Tici Andrade","short_name":null,"picture":{"original_width":180,"original_height":201,"url":"http://img.new.livestream.com/accounts/000000000005be9b/fa2bb2ec-fb09-4b5b-9e71-d82d66092181.jpg","thumb_url":"http://img.new.livestream.com/accounts/000000000005be9b/fa2bb2ec-fb09-4b5b-9e71-d82d66092181_50x50.jpg","small_url":"http://img.new.livestream.com/accounts/000000000005be9b/fa2bb2ec-fb09-4b5b-9e71-d82d66092181_170x170.jpg","medium_url":null,"secure_thumb_url":"https://img.new.livestream.com/accounts/000000000005be9b/fa2bb2ec-fb09-4b5b-9e71-d82d66092181_50x50.jpg","secure_small_url":"https://img.new.livestream.com/accounts/000000000005be9b/fa2bb2ec-fb09-4b5b-9e71-d82d66092181_170x170.jpg","secure_medium_url":null,"width":180,"height":180},"is_beta_producer":true,"timezone":"America/New_York","description":null,"background_image":null,"background_color":null,"background_repeat":null,"background_position":null,"background_attachment":null,"created_at":"2012-03-22T13:26:02.000Z","is_locked":false,"upcoming_events":null,"past_events":null,"links":null,"google_analytics_id":null,"mixpanel_id":"a381764038af7-074bfe067-43681f0a-2ee000-a381764039d36","signup_page":null,"signup_action":null,"devices":{"total":0,"data":[]},"category":null,"category_name":null,"private":false,"features":null,"plan_id":-1,"plan_info":{"id":-1,"features":"0","type":10,"is_scoped":false},"features_with_plan":"0","is_searchable":true,"is_public":true,"ad_account_id":null,"ad_provider_id":null,"ad_custom_params":{"accountId":"%accountId%","eventId":"%eventId%","live":"%isLive%","embedPath":"%embedPath%","embedHost":"%embedHost%"},"ad_enabled_for_vod":false,"ad_enabled_for_live":false,"ad_rules_enabled":false,"ad_midroll_duration":40,"ad_enabled_for_owner":true,"ad_types":["preroll"],"ad_enabled":false,"privacy_freeze":false,"followers":null,"following":null}]},"following":{"total":0,"data":[]}},"logo":{"original_width":500,"original_height":500,"url":"http://img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4.jpg","thumb_url":"http://img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4_50x28.jpg","small_url":"http://img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4_170x96.jpg","medium_url":"http://img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4_640x360.jpg","secure_thumb_url":"https://img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4_50x28.jpg","secure_small_url":"https://img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4_170x96.jpg","secure_medium_url":"https://img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4_640x360.jpg","width":496,"height":279},"background_image":null,"background_color":null,"background_repeat":null,"background_position":null,"background_attachment":null,"live_video_post_id":195351898,"broadcast_id":-1,"links":null,"viewer_count":0,"activity_disabled":true,"created_at":"2019-08-04T22:40:48.625Z","updated_at":"2019-08-23T20:49:33.747Z","expires_at":null,"draft":false,"start_time":"2019-08-19T14:30:00.000Z","end_time":"2019-08-22T22:00:00.000Z","feed":{"total":4,"data":[{"type":"video","data":{"id":195239044,"event_id":8772109,"caption":"CSS In-Depth, v3: Day 1","duration":27658000,"broadcast_id":195239045,"takedown_id":null,"original_duration":29096642,"copied_from":null,"description":null,"asset_id":"0077bd5e-4597-435f-8f71-9dc8c58244bd","asset":{"qualities":[{"bitrate":428000,"height":240,"name":"240p","width":432,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":1449405757},{"bitrate":1628000,"height":480,"name":"480p","width":856,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":5514262042},{"bitrate":2128000,"height":720,"name":"720p","width":1280,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":4271567822},{"bitrate":4628000,"height":1080,"name":"1080p","width":1920,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":11697235986}],"akamai_stream_id":316530,"stream_name":"4894689_8772109_lsiihalq4emcouuxcff_1","workflow_status":"downloaded","state":null,"workflow_retry_count":0,"workflow_error":0,"workflow_progress":0,"downloader_progress":0,"transcoded":true,"transcode_started_at":null,"inserted_to_download_queue_at":"2019-08-19T22:23:29.805Z","inserted_to_transcoding_queue_at":null,"received_video_from_user_at":null,"application_name":"Livestream Studio Software PC","is_available_on_playlist_service":true},"in":1438,"out":29096,"thumbnail_width":1920,"thumbnail_height":1080,"draft":false,"tags":null,"created_at":"2019-08-19T14:18:33.150Z","updated_at":"2019-08-23T20:46:31.876Z","streamed_at":"2019-08-19T14:18:33.252Z","publish_at":"2019-08-20T19:00:00.000Z","views":2082,"owner_account_id":null,"likes":{"total":0,"data":[]},"comments":{"total":0,"data":[]},"thumbnail_url":"http://img.new.livestream.com/events/000000000085da0d/0077bd5e-4597-435f-8f71-9dc8c58244bd_10440.jpg","thumbnail_url_small":"http://img.new.livestream.com/events/000000000085da0d/0077bd5e-4597-435f-8f71-9dc8c58244bd_10440_150x83.jpg","secure_thumbnail_url":"https://img.new.livestream.com/events/000000000085da0d/0077bd5e-4597-435f-8f71-9dc8c58244bd_10440.jpg","secure_thumbnail_url_small":"https://img.new.livestream.com/events/000000000085da0d/0077bd5e-4597-435f-8f71-9dc8c58244bd_10440_150x83.jpg","progressive_url":"https://static-fastly.livestream.com/unsupported.mp4","progressive_url_hd":"https://static-fastly.livestream.com/unsupported.mp4","smil_url":"http://api.new.livestream.com/accounts/4894689/events/8772109/videos/195239044.smil","secure_smil_url":"https://api.new.livestream.com/accounts/4894689/events/8772109/videos/195239044.secure.smil","secure_progressive_url":"https://static-fastly.livestream.com/unsupported.mp4","secure_progressive_url_hd":"https://static-fastly.livestream.com/unsupported.mp4","m3u8_url":"http://api.new.livestream.com/accounts/4894689/events/8772109/videos/195239044.m3u8?token=5e172ce5_d928d5cf444231f500df4eadca253b08dcc93b23","secure_m3u8_url":"https://api.new.livestream.com/accounts/4894689/events/8772109/videos/195239044.secure.m3u8?token=5e172ce5_07d4b0001e98fd8de6ce2791cde1c4dd30225711"}},{"type":"video","data":{"id":195275692,"event_id":8772109,"caption":"CSS In-Depth, v3: Day 2","duration":25458000,"broadcast_id":195275693,"takedown_id":null,"original_duration":27678696,"copied_from":null,"description":null,"asset_id":"ba60234c-8c40-43e8-8127-258b0a68f1b6","asset":{"qualities":[{"bitrate":428000,"height":240,"name":"240p","width":432,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":1353120703},{"bitrate":1628000,"height":480,"name":"480p","width":856,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":5133820915},{"bitrate":2128000,"height":720,"name":"720p","width":1280,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":4021293756},{"bitrate":4628000,"height":1080,"name":"1080p","width":1920,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":10695162999}],"akamai_stream_id":689013,"stream_name":"4894689_8772109_lsi9i24bunhqpytpcc7_1","workflow_status":"downloaded","state":null,"workflow_retry_count":0,"workflow_error":0,"workflow_progress":0,"downloader_progress":0,"transcoded":true,"transcode_started_at":null,"inserted_to_download_queue_at":"2019-08-20T22:08:38.800Z","inserted_to_transcoding_queue_at":null,"received_video_from_user_at":null,"application_name":"Livestream Studio Software PC","is_available_on_playlist_service":true},"in":2220,"out":27678,"thumbnail_width":1920,"thumbnail_height":1080,"draft":false,"tags":null,"created_at":"2019-08-20T14:27:20.086Z","updated_at":"2019-08-23T20:46:53.490Z","streamed_at":"2019-08-20T14:27:20.210Z","publish_at":"2019-08-20T18:00:00.000Z","views":2217,"owner_account_id":null,"likes":{"total":0,"data":[]},"comments":{"total":0,"data":[]},"thumbnail_url":"http://img.new.livestream.com/events/000000000085da0d/ba60234c-8c40-43e8-8127-258b0a68f1b6_10530.jpg","thumbnail_url_small":"http://img.new.livestream.com/events/000000000085da0d/ba60234c-8c40-43e8-8127-258b0a68f1b6_10530_150x83.jpg","secure_thumbnail_url":"https://img.new.livestream.com/events/000000000085da0d/ba60234c-8c40-43e8-8127-258b0a68f1b6_10530.jpg","secure_thumbnail_url_small":"https://img.new.livestream.com/events/000000000085da0d/ba60234c-8c40-43e8-8127-258b0a68f1b6_10530_150x83.jpg","progressive_url":"https://static-fastly.livestream.com/unsupported.mp4","progressive_url_hd":"https://static-fastly.livestream.com/unsupported.mp4","smil_url":"http://api.new.livestream.com/accounts/4894689/events/8772109/videos/195275692.smil","secure_smil_url":"https://api.new.livestream.com/accounts/4894689/events/8772109/videos/195275692.secure.smil","secure_progressive_url":"https://static-fastly.livestream.com/unsupported.mp4","secure_progressive_url_hd":"https://static-fastly.livestream.com/unsupported.mp4","m3u8_url":"http://api.new.livestream.com/accounts/4894689/events/8772109/videos/195275692.m3u8?token=5e172ce5_6444936a48afc87330040cf1025da45649e3d0bf","secure_m3u8_url":"https://api.new.livestream.com/accounts/4894689/events/8772109/videos/195275692.secure.m3u8?token=5e172ce5_e29441bd4a878cdc0d6a71d570482387c135c19e"}},{"type":"video","data":{"id":195317222,"event_id":8772109,"caption":"CSS In-Depth, v3: Day 3","duration":27742000,"broadcast_id":195317223,"takedown_id":null,"original_duration":29276710,"copied_from":null,"description":null,"asset_id":"f2e5c53b-0f9d-4534-9a33-a4c2148f980c","asset":{"qualities":[{"bitrate":428000,"height":240,"name":"240p","width":432,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":1437367404},{"bitrate":1628000,"height":480,"name":"480p","width":856,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":5474610407},{"bitrate":2128000,"height":720,"name":"720p","width":1280,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":4256464716},{"bitrate":4628000,"height":1080,"name":"1080p","width":1920,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":11153945461}],"akamai_stream_id":446617,"stream_name":"4894689_8772109_lsisv9c4g3uee0x7qk9_1","workflow_status":"downloaded","state":null,"workflow_retry_count":0,"workflow_error":0,"workflow_progress":0,"downloader_progress":0,"transcoded":true,"transcode_started_at":null,"inserted_to_download_queue_at":"2019-08-21T22:24:41.795Z","inserted_to_transcoding_queue_at":null,"received_video_from_user_at":null,"application_name":"Livestream Studio Software PC","is_available_on_playlist_service":true},"in":1534,"out":29276,"thumbnail_width":1920,"thumbnail_height":1080,"draft":false,"tags":null,"created_at":"2019-08-21T14:16:45.046Z","updated_at":"2019-08-23T20:49:26.708Z","streamed_at":"2019-08-21T14:16:45.183Z","publish_at":"2019-08-20T16:30:00.000Z","views":1276,"owner_account_id":null,"likes":{"total":0,"data":[]},"comments":{"total":0,"data":[]},"thumbnail_url":"http://img.new.livestream.com/events/000000000085da0d/f2e5c53b-0f9d-4534-9a33-a4c2148f980c_10590.jpg","thumbnail_url_small":"http://img.new.livestream.com/events/000000000085da0d/f2e5c53b-0f9d-4534-9a33-a4c2148f980c_10590_150x83.jpg","secure_thumbnail_url":"https://img.new.livestream.com/events/000000000085da0d/f2e5c53b-0f9d-4534-9a33-a4c2148f980c_10590.jpg","secure_thumbnail_url_small":"https://img.new.livestream.com/events/000000000085da0d/f2e5c53b-0f9d-4534-9a33-a4c2148f980c_10590_150x83.jpg","progressive_url":"https://static-fastly.livestream.com/unsupported.mp4","progressive_url_hd":"https://static-fastly.livestream.com/unsupported.mp4","smil_url":"http://api.new.livestream.com/accounts/4894689/events/8772109/videos/195317222.smil","secure_smil_url":"https://api.new.livestream.com/accounts/4894689/events/8772109/videos/195317222.secure.smil","secure_progressive_url":"https://static-fastly.livestream.com/unsupported.mp4","secure_progressive_url_hd":"https://static-fastly.livestream.com/unsupported.mp4","m3u8_url":"http://api.new.livestream.com/accounts/4894689/events/8772109/videos/195317222.m3u8?token=5e172ce5_d37879727b325c56ba370bcd382d2c14ad0cc749","secure_m3u8_url":"https://api.new.livestream.com/accounts/4894689/events/8772109/videos/195317222.secure.m3u8?token=5e172ce5_81eb2db7d66afd5ce5e5886b9d5fd7d6eaa05092"}},{"type":"video","data":{"id":195351898,"event_id":8772109,"caption":"CSS In-Depth, v3: Day 4","duration":27332000,"broadcast_id":195351899,"takedown_id":null,"original_duration":27962298,"copied_from":null,"description":null,"asset_id":"e2adb491-0242-404c-93ef-f880bd7dc677","asset":{"qualities":[{"bitrate":428000,"height":240,"name":"240p","width":432,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":1345363871},{"bitrate":1628000,"height":480,"name":"480p","width":856,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":5016411380},{"bitrate":2128000,"height":720,"name":"720p","width":1280,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":3861060435},{"bitrate":4628000,"height":1080,"name":"1080p","width":1920,"codec":{"video":"avc1.77.31","audio":"mp4a.40.2"},"angle":1,"download_status":"downloaded","bytesize":10186667132}],"akamai_stream_id":446973,"stream_name":"4894689_8772109_lsiix7a3v1u8nm4t1mz_1","workflow_status":"downloaded","state":null,"workflow_retry_count":0,"workflow_error":0,"workflow_progress":0,"downloader_progress":0,"transcoded":true,"transcode_started_at":null,"inserted_to_download_queue_at":"2019-08-22T22:12:24.221Z","inserted_to_transcoding_queue_at":null,"received_video_from_user_at":null,"application_name":"Livestream Studio Software PC","is_available_on_playlist_service":true},"in":630,"out":27962,"thumbnail_width":1920,"thumbnail_height":1080,"draft":false,"tags":null,"created_at":"2019-08-22T14:26:21.912Z","updated_at":"2019-08-23T20:49:33.749Z","streamed_at":"2019-08-22T14:26:21.978Z","publish_at":"2019-08-20T14:00:00.000Z","views":908,"owner_account_id":null,"likes":{"total":0,"data":[]},"comments":{"total":0,"data":[]},"thumbnail_url":"http://img.new.livestream.com/events/000000000085da0d/e2adb491-0242-404c-93ef-f880bd7dc677_9540.jpg","thumbnail_url_small":"http://img.new.livestream.com/events/000000000085da0d/e2adb491-0242-404c-93ef-f880bd7dc677_9540_150x83.jpg","secure_thumbnail_url":"https://img.new.livestream.com/events/000000000085da0d/e2adb491-0242-404c-93ef-f880bd7dc677_9540.jpg","secure_thumbnail_url_small":"https://img.new.livestream.com/events/000000000085da0d/e2adb491-0242-404c-93ef-f880bd7dc677_9540_150x83.jpg","progressive_url":"https://static-fastly.livestream.com/unsupported.mp4","progressive_url_hd":"https://static-fastly.livestream.com/unsupported.mp4","smil_url":"http://api.new.livestream.com/accounts/4894689/events/8772109/videos/195351898.smil","secure_smil_url":"https://api.new.livestream.com/accounts/4894689/events/8772109/videos/195351898.secure.smil","secure_progressive_url":"https://static-fastly.livestream.com/unsupported.mp4","secure_progressive_url_hd":"https://static-fastly.livestream.com/unsupported.mp4","m3u8_url":"http://api.new.livestream.com/accounts/4894689/events/8772109/videos/195351898.m3u8?token=5e172ce5_9cf5c85891756503585e270944d7004e2896d1b9","secure_m3u8_url":"https://api.new.livestream.com/accounts/4894689/events/8772109/videos/195351898.secure.m3u8?token=5e172ce5_f8b263ff8b4261c3ed511f9618492c231951fcf5"}}]},"stream_info":null,"real_time":{"path":"/events/8772109","namespace":"/events","roomId":8772109},"tags":null,"in_progress":false,"likes":{"total":0,"data":[]},"video_count":4,"post_count":null,"views_count":null,"is_embeddable":true,"is_white_labeled":true,"is_embed_white_labeled":false,"is_player_white_labeled":false,"has_advanced_analytics":false,"viewer_count_visible":false,"post_comments_enabled":false,"is_likable":true,"live_chat_enabled":false,"is_searchable":false,"is_public":false,"ad_account_id":null,"ad_provider_id":null,"ad_custom_params":{"accountId":"%accountId%","eventId":"%eventId%","live":"%isLive%","embedPath":"%embedPath%","embedHost":"%embedHost%"},"ad_enabled_for_vod":false,"ad_enabled_for_live":false,"ad_rules_enabled":false,"ad_midroll_duration":40,"ad_enabled_for_owner":true,"ad_types":["preroll"],"ad_enabled":false,"embed_restriction":"off","embed_restriction_blacklist":null,"embed_restriction_whitelist":["*.livestream.com/*"],"is_password_protected":false,"lat":44.97997,"lng":-93.26384,"is_donations_enabled":true,"guest_chat_enabled":true,"privacy_freeze":false,"geo_blocked":null},"angular_chat_app_css":"//cdn.livestream.com/deploy/apps/production/events/5.2.28/stylesheets/events.css","angular_chat_app_js":{"require_source":"//cdn.livestream.com/deploy/apps/production/events/5.2.28/javascripts/require.js","require_main":"//cdn.livestream.com/deploy/apps/production/events/5.2.28/javascripts/live_chat.js"},"playerJsUrl":"//vpe-cdn.livestream.com/playerjs","playerMUrl":"//vpe-cdn.livestream.com/playerm","sioProxyAccounts":[244733,10722159,1864284],"client_ip":"45.56.154.121"};</script>
+        <!-- Cookie consent -->
+<script type="text/javascript">
+    var GDPR = (function () {
+
+        var retryCount = 1;
+        var cookieConsent;
+        var COUNTRY_CODES = ['AT', 'BE', 'BG', 'CY', 'CZ', 'DE', 'DK', 'EE', 'ES', 'FI', 'FR', 'GB', 'GR',
+            'HR', 'HU', 'IE', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'PL', 'PT', 'RO', 'SE', 'SI', 'SK'];
+        var ESSENTIAL_COOKIE_LIST = ['__cu', '__cu_id', 'vuid', '__cu_short_name', 'req_auth', 'cookie_consent', 'code'];
+        var COOKIE_CONSENT = 'cookie_consent';
+        var countryCode = undefined;
+
+        function getCookie(cookieName) {
+          var name = cookieName + '=';
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return null;
+        }
+
+        function getQueryParameter (parameterName) {
+            parameterName = parameterName.replace(/[\[]/, '\\\[').replace(/[\]]/, '\\\]');
+            var regex = new RegExp('[\\?&]' + parameterName + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return (results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' ')));
+        }
+
+        function triggerEvent (eventName) {
+            var event = window.document.createEvent('Event');
+            event.initEvent(eventName, true, true);
+            window.dispatchEvent(event);
+        }
+
+        // cookie policy header should be shown only for EU user, who has not yet consented
+        // and he is not logged in
+        function checkAndShowCookiePolicyHeader () {
+            var isEU = COUNTRY_CODES.indexOf(countryCode) !== -1;
+            if (cookieConsent === null && isEU && !getCookie('__cu_id')) {
+                var header = document.querySelector('.js-cookie_policy');
+                if (!header) {
+                    return;
+                }
+                header.classList.remove('hide');
+                document.body.classList.add('gdpr');
+                var okButton = header.querySelector('.js-cookie_ok');
+                okButton.addEventListener('click', function () {
+                    setConsent(true);
+                    document.body.classList.remove('gdpr');
+                    header.classList.add('hide');
+                    setTimeout(function () {
+                        triggerEvent('resize');
+                    }, 250);
+                });
+                // Triggering a resize event so that the clients align themselves when header is shown
+                setTimeout(function () {
+                    triggerEvent('resize');
+                }, 250);
+            }
+        }
+
+        function setConsent (hasConsented) {
+            setCookie(COOKIE_CONSENT, hasConsented);
+
+            var previousValue = getCookie(COOKIE_CONSENT);
+            if (hasConsented && previousValue === 'false') {
+                window.location.reload();
+            }
+        }
+
+        function setCookie (name, value) {
+            var date = new Date();
+            date.setFullYear(date.getFullYear() + 2);
+
+            document.cookie = name + '=' + value.toString() +
+                '; expires=' + date.toGMTString() +
+                '; path=/' +
+                '; domain=.' + getDomain(window.location.hostname);
+        }
+
+        function getDomain (subDomain) {
+            var parts = subDomain.split('.');
+            if (parts.length < 2) {
+                return;
+            }
+
+            return parts[parts.length - 2] + '.' + parts[parts.length - 1];
+        }
+
+        function deleteCookie (name) {
+            // Cookies are not deleted at least in chrome unless you specify all the parts corrects i.e. path & domain.
+            // Assuming path is / and working out all possible combinations of domain
+            var currentDomain = window.location.hostname;
+            var domains = ['', currentDomain, '.' + currentDomain];
+
+            var mainDomain = getDomain(currentDomain);
+            if (mainDomain !== currentDomain) {
+                domains.push(mainDomain);
+                domains.push('.' + mainDomain);
+            }
+
+            for (var i = 0; i < domains.length; i++) {
+                document.cookie = name + '=deleted;' +
+                'domain=' + domains[i] + ';expires=Thu, 01 Jan 1970 00:00:01 GMT;path=/';
+            }
+        }
+
+        function denyConsent () {
+            // Delete all non essential cookies by enumerating the cookies
+            var cookies = document.cookie.split(';');
+            var parts, name, index;
+
+            for (var i = 0; i < cookies.length; i++ ) {
+                parts = cookies[i];
+                index = parts.indexOf('=');
+
+                if (index !== -1) {
+                    name = parts.substr(0, index).trim();
+                    if (ESSENTIAL_COOKIE_LIST.indexOf(name) === -1) {
+                        deleteCookie(name);
+                    }
+                }
+            }
+            setConsent(false);
+        }
+
+        function initializeCookieFunctions () {
+            window.cookieFunctions = {
+                getCookie : function (name) {
+                    return getCookie(name);
+                },
+                setCookie : function (options) {
+                    if (cookieConsent || cookieConsent === null || ESSENTIAL_COOKIE_LIST.indexOf(options.name) !== -1) {
+                        // set cookie
+                        if (!options.expires) {
+                            options.expires = 365;
+                        }
+
+                        if (typeof options.expires === 'number') {
+                            var days = options.expires;
+                            var t = options.expires = new Date();
+                            t.setDate(t.getDate() + days);
+                        }
+
+                        document.cookie = [
+                            encodeURIComponent(options.name), '=', encodeURIComponent(options.value),
+                            options.expires ? '; expires=' + options.expires.toUTCString() : '',
+                            options.path    ? '; path=' + options.path : '',
+                            options.domain  ? '; domain=' + options.domain : '',
+                            options.secure  ? '; secure' : ''
+                        ].join('');
+                    }
+                },
+                removeCookie : function (options) {
+                    deleteCookie(options.name);
+                },
+                isCookiesAllowed : function () {
+                    return cookieConsent || cookieConsent === null;
+                },
+                setUserConsent : function () {
+                    setConsent(true);
+                },
+                denyUserConsent : function () {
+                    denyConsent();
+                }
+            };
+        }
+
+        function getCountryCode () {
+            var code = getQueryParameter('code') || getCookie('code');
+            if (code) {
+                countryCode = code;
+                checkConsent();
+                return setCookie('code', countryCode);
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status == 200) {
+                    try {
+                        var response = JSON.parse(xhr.response);
+                        countryCode = response.country;
+                        checkConsent();
+                    } catch (e) {
+                        // snub error
+                    }
+                }
+            };
+            xhr.open('GET', '/client/location');
+            xhr.send();
+
+        }
+
+        function checkConsent () {
+            var consent;
+            var isEU = COUNTRY_CODES.indexOf(countryCode) !== -1;
+            if (!isEU) {
+                //No EU, No GDPR!
+                return onGDPRInitialized(true);
+            }
+
+                // In embeds for EU user there should be no tracking
+                else {
+                    return onGDPRInitialized(false);
+                }
+            var cookieValue = getCookie(COOKIE_CONSENT);
+            return onGDPRInitialized(cookieValue === 'false' ? false : null);
+        }
+
+        function onGDPRInitialized (consent) {
+            cookieConsent = consent;
+            if (consent === false) {
+                // Nothing to do
+                return
+            }
+
+            triggerEvent('loadTracking')
+            if (window._waitingForCountry) {
+                checkAndShowCookiePolicyHeader();
+            }
+        }
+
+        function init () {
+            var cu = getCookie('__cu');
+            var cuId = parseInt(getCookie('__cu_id'), 10);
+
+            window.currentUserId = isNaN(cuId) ? null : cuId;
+            window.currentUser = (cu !== null ? JSON.parse(cu) : {});
+
+            initializeCookieFunctions();
+
+            if (getCookie(COOKIE_CONSENT) === 'true') {
+                // Consent given
+                return onGDPRInitialized(true);
+            }
+
+            getCountryCode();
+        }
+
+        function check () {
+            if (countryCode !== undefined) {
+                return checkAndShowCookiePolicyHeader();
+            }
+
+            // Wait for the country to be initialized.
+            window._waitingForCountry = true;
+        }
+
+        init();
+
+        return {
+            check: check
+        };
+    })();
+</script>
+
+<!-- VUID -->
+<script type="text/javascript">
+!function(t){function n(){return 2147483647}function o(t,o){return 0===arguments.length&&(o=0,t=n()),Math.floor(Math.random()*(t-o+1))+o}function e(t){var n=(new Date).getTime()/1e3,o=parseInt(n,10);return t?n:Math.round(1e3*(n-o))/1e3+" "+o}function r(t,n){var o,e,r,i;return n|=0,o=Math.pow(10,n),t*=o,i=t>0|-(t<0),r=t%1==.5*i,e=Math.floor(t),r&&(t=e+(i>0)),(r?t:Math.round(t))/o}function i(t){var n,o,e=t+"",r=e.charCodeAt(0);return 55296<=r&&r<=56319?(n=r,1===e.length?r:(o=e.charCodeAt(1),1024*(n-55296)+(o-56320)+65536)):r}function a(){return r(o()/n()*2147483647)}function u(t){var n,o,e,r=t.toString(),a=1;if(void 0!==r&&""!==r)for(a=0,n=r.length-1;n>=0;n--)o=i(r.charAt(n)),a=(a<<6&268435455)+o+(o<<14),(e=266338304&a)&&(a^=e>>21);return a}function c(t,n,o,e,r,i){var a;return arguments.length>1?(o&&(a=new Date,a.setDate(a.getDate()+o)),document.cookie=t+"="+encodeURIComponent(n)+(a?"; expires="+a.toGMTString():"")+(e?"; path="+e:"")+(r?"; domain="+r:"")+(i?"; secure":""),!0):decodeURIComponent((("; "+document.cookie).split("; "+t+"=")[1]||"").split(";")[0])}var h,d;h={cookie:c("vuid")},h.cookie||(h.cookie="pl"+(2147483647&(a()^u(e()))).toString()+"."+(2147483647&(a()^u(t.navigator.userAgent)).toString())),d=t.location.hostname.split("."),d.length>2&&d.shift(),c("vuid",h.cookie,730,"/","."+d.join("."),!1)}(window);
+</script>
+
+        <script type="text/javascript">
+    dataLayer = [];
+    var loadInitialGtmData = function () {
+        function getPlan (cu) {
+            if (cu.plan_info && cu.plan_info.id) {
+                switch(cu.plan_info.id) {
+                    case -1:
+                        return 'No Plan';
+                    case 1:
+                        return 'Free';
+                    case 2:
+                    case 4:
+                        return 'Basic';
+                    case 3:
+                    case 5:
+                    case 12:
+                    case 13:
+                        return 'Premium';
+                    case 8:
+                    case 9:
+                        return 'Enterprise';
+                    case 10:
+                        return 'Free Trial';
+                    case 11:
+                        return 'Mevo';
+                }
+            }
+            return 'unknown';
+        }
+
+        function readCookie (name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') {
+                    c = c.substring(1,c.length);
+                }
+                if (c.indexOf(nameEQ) == 0) {
+                    return c.substring(nameEQ.length,c.length);
+                }
+            }
+            return null;
+        }
+
+        var user = (readCookie('__cu') !== null ? JSON.parse(decodeURIComponent(readCookie('__cu'))) : {});
+        var userId = readCookie('__cu_id');
+        var gtm_data = JSON.parse('{"page":"Event","version":"event 3.0","event_id":8772109,"event_owner_id":4894689,"user_ga_id":"UA-11649917-2"}');
+        gtm_data.account_id = userId ? userId : 'Unknown';
+        gtm_data.session_type = userId ? 'Logged In' : 'Logged Out';
+        gtm_data.plan_type = getPlan(user);
+        gtm_data.page = (typeof gtm_data.page === 'undefined' ? 'Others' : gtm_data.page);
+        var vuid = readCookie('vuid');
+        if (vuid) {
+            gtm_data.vuid = vuid;
+        }
+        dataLayer = dataLayer || [];
+        dataLayer.push(gtm_data);
+    };
+
+    // Google Tag Manager
+    var loadGtm = function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    };
+    // End Google Tag Manager
+
+    var initializeGTM = function () {
+        loadInitialGtmData();
+        loadGtm(window,document,'script','dataLayer', 'GTM-KNG43F');
+    };
+
+    if (window.cookieFunctions.isCookiesAllowed()) {
+        initializeGTM();
+    } else {
+        window.addEventListener('loadTracking', initializeGTM, {once : true});
+    }
+</script>
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-KNG43F"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+
+        <link rel="canonical" href="https://livestream.com/accounts/4894689/events/8772109/player">
+        <link rel="P3Pv1" href="https://livestream.com/w3c/p3p.xml">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://cdn.livestream.com/deploy/website/production/387fd79/assets/m/icon-iphone@2x.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://cdn.livestream.com/deploy/website/production/387fd79/assets/m/icon-ipad.png">
+        <link rel="apple-touch-icon-precomposed" href="https://cdn.livestream.com/deploy/website/production/387fd79/assets/m/icon-iphone.png">
+
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="event_embed" src="./CSS In-Depth, v3 on Livestream_files/event_embed.js"></script><script src="chrome-extension://pkedcjkdefgpdelpbcmbmeomcjbeemfm/cast_sender.js"></script><script type="text/javascript" src="./CSS In-Depth, v3 on Livestream_files/player.js"></script><link type="text/css" rel="stylesheet" href="./CSS In-Depth, v3 on Livestream_files/player.css"><script type="text/javascript" src="./CSS In-Depth, v3 on Livestream_files/m.js"></script><link type="text/css" rel="stylesheet" href="./CSS In-Depth, v3 on Livestream_files/m.css"></head>
+    <body class="event_page ng-scope is_desktop is_embed">
+        <div ng-controller="embedController" class="event_content_wrapper embed_content_wrapper ng-scope" ng-class="{&#39;notice_displayed&#39; : headerNoticeDisplayed }" ng-mouseover="toggleHoverState(true)" ng-mouseleave="toggleHoverState(false)">
+  <div ng-bind-html="svg" app-name="events" class="hide ng-binding ng-isolate-scope"><svg xmlns="http://www.w3.org/2000/svg"><symbol id="circular_close" viewBox="0 0 28 28"><g><circle cx="14" cy="14" r="14"></circle><path d="M20 9.2L18.8 8 14 12.8 9.2 8 8 9.2l4.8 4.8L8 18.8 9.2 20l4.8-4.8 4.8 4.8 1.2-1.2-4.8-4.8z"></path></g></symbol><symbol id="comment" viewBox="9 2 21 21"><path d="M12.317 17.048a8.5 8.5 0 1 1 2.635 2.635L11 21l1.317-3.952zm-2.014.522A10.453 10.453 0 0 1 9 12.5C9 6.701 13.701 2 19.5 2S30 6.701 30 12.5 25.299 23 19.5 23c-1.84 0-3.57-.474-5.074-1.305l-4.068 1.237c-.913.277-1.57-.386-1.294-1.294l1.239-4.068z"></path></symbol><symbol id="comment_notification" viewBox="0 0 23 22"><g fill="none" fill-rule="evenodd"><path d="M20.906 9.691a9 9 0 0 1-14.054 8.692L2 20l1.778-5.334a9 9 0 0 1 9.53-12.571A5.988 5.988 0 0 1 14.32.244 11.043 11.043 0 0 0 12 0C5.925 0 1 4.925 1 11c0 1.428.272 2.792.767 4.044l-.23.759-1.473 4.835c-.277.908.381 1.571 1.294 1.294l4.839-1.472.124-.038A10.949 10.949 0 0 0 12 22c6.075 0 11-4.925 11-11 0-.796-.085-1.572-.245-2.32a5.988 5.988 0 0 1-1.85 1.011z" fill="#FFF"></path><circle fill="#D11C27" cx="19" cy="4" r="4"></circle></g></symbol><symbol id="comment_outline" viewBox="0 0 23 22"><path d="M6.851 18.383a9 9 0 1 0-3.073-3.717L2 20l4.851-1.617zm-.53 2.04l-.124.037-4.839 1.472c-.913.277-1.57-.386-1.294-1.294l1.472-4.835.231-.759A10.971 10.971 0 0 1 1 11C1 4.925 5.925 0 12 0s11 4.925 11 11-4.925 11-11 11c-2.078 0-4.022-.576-5.68-1.578z"></path></symbol><symbol id="destination" viewBox="0 0 36 36"><path d="M12.685 16.364h13.497v3.272h-8.864a26.251 26.251 0 0 0-4.633-3.272zM0 16.364v3.272a19.628 19.628 0 0 1 17.197 10.15l2.864-1.583A22.9 22.9 0 0 0 0 16.363zM36 18l-9.818 6.545v-13.09z"></path><path d="M21.744 35.625l-10.29-5.776 11.665-5.943zM8.398 14.467a19.653 19.653 0 0 0 7.416-6.11l-4.36-2.22L21.745.36l1.375 11.72-4.355-2.22a22.94 22.94 0 0 1-6.559 6.244 26.028 26.028 0 0 0-3.807-1.637z"></path></symbol><symbol id="edit" viewBox="0 0 21 21"><path d="M.34 19.003l6.98-1.744-.93.527L18.991 5.183l.005-.005-3.177-3.177c.002.002-.002.002-.005.005L3.212 14.61l.527-.93-1.748 6.976-.002.001c.164-.888-.76-1.814-1.65-1.65v-.003zM17.237.584l3.177 3.177c.785.785.78 2.054-.005 2.839L7.806 19.202l-7.05 1.762c-.537.134-.86-.19-.726-.725l1.766-7.047L14.398.59a2.01 2.01 0 0 1 2.839-.006z"></path><path d="M2.793 13.207l5 5 1.414-1.414-5-5zM11.293 4.707l4.947 4.952 1.415-1.414-4.948-4.952z"></path></symbol><symbol id="facebook" viewBox="0 0 20 20"><path d="M18.896 20H1.104C.494 20 0 19.506 0 18.896V1.104C0 .494.494 0 1.104 0h17.792C19.506 0 20 .494 20 1.104v17.792c0 .61-.494 1.104-1.104 1.104zM13.8 20v-7.745h2.6l.389-3.018h-2.99V7.309c0-.873.243-1.469 1.497-1.469h1.598v-2.7a21.41 21.41 0 0 0-2.33-.12c-2.304 0-3.881 1.407-3.881 3.99v2.227H8.076v3.018h2.607V20H13.8z"></path></symbol><symbol id="first_help_live" viewBox="0 0 87 32"><title>first_help_live</title><path fill="#fff" d="M39.456 0h40.078c.686 0 1.243.556 1.243 1.243v26.718c0 .686-.556 1.243-1.243 1.243H39.456a1.243 1.243 0 0 1-1.243-1.243V1.243c0-.686.556-1.243 1.243-1.243z"></path><path fill="none" stroke="#888" stroke-width=".621" d="M39.767.311h39.456c.686 0 1.243.556 1.243 1.243v26.097c0 .686-.556 1.243-1.243 1.243H39.767a1.243 1.243 0 0 1-1.243-1.243V1.554c0-.686.556-1.243 1.243-1.243z"></path><path fill="#cf202e" d="M41.01 2.175h4.971c.343 0 .621.278.621.621v1.243a.621.621 0 0 1-.621.621H41.01a.621.621 0 0 1-.621-.621V2.796c0-.343.278-.621.621-.621z"></path><path opacity=".1" d="M71.928 28.928l-3.109.048-.935-5.218a1.194 1.194 0 0 1 1.009-1.401l3.494-.507-.46 7.079z"></path><path fill="#fff" d="M69.219 21.406l15.711-2.77 1.685 9.556a1.247 1.247 0 0 1-1.01 1.443l-13.258 2.338a1.245 1.245 0 0 1-1.442-1.01l-1.685-9.556z"></path><path fill="none" stroke="#4185be" stroke-width=".621" d="M69.579 21.658l1.631 9.25a.935.935 0 0 0 1.083.758l13.258-2.338a.935.935 0 0 0 .758-1.083l-1.631-9.25-15.099 2.662z"></path><path fill="#4185be" d="M75.256 25.878l2.42 1.287 2.092-4.717-.568-.252-1.956 4.412.43-.148-2.125-1.13z"></path><path fill="#c6daeb" d="M68.837 19.241a1.246 1.246 0 0 1 1.01-1.442l13.258-2.338a1.245 1.245 0 0 1 1.442 1.01l.485 2.752-15.711 2.77-.485-2.752z"></path><path fill="none" stroke="#4185be" stroke-width=".621" d="M69.574 21.633l15.099-2.662-.431-2.446a.935.935 0 0 0-1.082-.758l-13.258 2.338a.935.935 0 0 0-.758 1.082l.431 2.446z"></path><path fill="#4185be" d="M80.052 14.412l.625-.11c.338-.06.66.166.72.504l.382 2.165a.621.621 0 0 1-.504.72l-.625.11a.621.621 0 0 1-.72-.504l-.382-2.165a.621.621 0 0 1 .504-.72z"></path><path fill="none" stroke="#4185be" stroke-width=".621" d="M80.412 14.664l.013-.002c.338-.06.66.166.72.504l.274 1.553a.621.621 0 0 1-.504.72l-.013.002a.621.621 0 0 1-.72-.504l-.274-1.553a.621.621 0 0 1 .504-.72z"></path><path fill="#4185be" d="M71.426 15.933l.625-.11c.338-.06.66.166.72.504l.382 2.165a.621.621 0 0 1-.504.72l-.625.11a.621.621 0 0 1-.72-.504l-.382-2.165a.621.621 0 0 1 .504-.72z"></path><path fill="none" stroke="#4185be" stroke-width=".621" d="M71.786 16.185l.013-.002c.338-.06.66.166.72.504l.274 1.553a.621.621 0 0 1-.504.72l-.013.002a.621.621 0 0 1-.72-.504l-.274-1.553a.621.621 0 0 1 .504-.72z"></path><path fill="#f3f3f3" d="M67.107 14.602a7.456 7.456 0 1 1-14.912 0 7.456 7.456 0 0 1 14.912 0z"></path><path fill="none" stroke="#888" stroke-width=".621" d="M66.796 14.602a7.146 7.146 0 1 1-14.292 0 7.146 7.146 0 0 1 14.292 0z"></path><path fill="#fff" d="M57.165 11.635c0-.344.249-.497.552-.343l6.24 3.168c.305.155.303.406 0 .56l-6.24 3.168c-.305.155-.552.002-.552-.343v-6.211z"></path><path fill="none" stroke="#888" stroke-width=".621" d="M57.476 11.635v6.211c0 .113.003.115.101.066l6.24-3.168c.053-.027.058-.033.058-.003s-.004.024-.058-.003l-6.24-3.168c-.097-.049-.101-.047-.101.066z"></path><path fill="#fff" d="M1.864 9.631h8.699c.686 0 1.243.556 1.243 1.243v9.32c0 .686-.556 1.243-1.243 1.243H1.864a1.243 1.243 0 0 1-1.243-1.243v-9.32c0-.686.556-1.243 1.243-1.243z"></path><path fill="#cf202e" d="M.621 11.184v8.7c0 .686.556 1.242 1.242 1.242h8.7c.686 0 1.242-.556 1.242-1.242v-8.7c0-.686-.556-1.242-1.242-1.242h-8.7c-.686 0-1.242.556-1.242 1.242zm-.621 0C0 10.155.835 9.32 1.864 9.32h8.7c1.029 0 1.864.835 1.864 1.864v8.7a1.865 1.865 0 0 1-1.864 1.864h-8.7A1.865 1.865 0 0 1 0 19.884v-8.7z"></path><path fill="#f0bcc0" stroke="#cf202e" stroke-width=".621" d="M6.214 18.33a2.796 2.796 0 1 0 0-5.592 2.796 2.796 0 0 0 0 5.592z"></path><path fill="#fff" d="M13.981 13.794c0-.513.346-1.166.771-1.457l2.661-1.82c.85-.581 1.539-.221 1.539.813v8.511c0 1.031-.733 1.465-1.635.971l-2.521-1.38c-.45-.246-.815-.862-.815-1.376v-4.262z"></path><path fill="none" stroke="#cf202e" stroke-width=".621" d="M14.291 13.794v4.262c0 .4.303.911.654 1.103l2.521 1.38c.695.38 1.175.095 1.175-.699v-8.511c0-.783-.408-.998-1.053-.557l-2.661 1.82c-.341.233-.636.79-.636 1.201z"></path><path fill="#cf202e" d="M24.233 15.845a.932.932 0 1 1-1.863 0 .932.932 0 0 1 1.863 0zM29.204 15.845a.932.932 0 1 1-1.863 0 .932.932 0 0 1 1.863 0zM34.485 15.845a.932.932 0 1 1-1.863 0 .932.932 0 0 1 1.863 0z"></path></symbol><symbol id="first_help_welcome" viewBox="0 0 67 32"><title>first_help_welcome</title><path fill="#f3f3f3" d="M65.446 2.491a.84.84 0 1 1 1.547.656.84.84 0 0 1-1.547-.656zM1.846 4.318a.842.842 0 1 0-1.683-.057.842.842 0 0 0 1.683.057zM63.677 13.831l-.82 1.163 3.655.777.82-1.163zM47.556 3.636l.045 1.422 3.387-1.579-.045-1.422zM36.184 23.055l-1.247-.686 2.945-2.3 1.247.686zM13.456 8.331l.325 1.385-3.68-.649-.325-1.385zM31.877 13.54l.956-1.054-3.533-1.217-.956 1.054zM59.567 12.385l-.685-1.573-1.863 1.305.685 1.573zM55.748 9.453l.515-1.637-2.262-.238-.515 1.637zM38.583 14.134l1.522.791.627-2.186-1.522-.791zM31.305 6.613l-1.493-.846 1.492-1.717 1.493.846zM21.473 9.013l.314-1.687 2.109.852-.314 1.687zM9.185 2.558L7.77 1.587l-.889 2.094 1.414.971zM49.275 13.202l-2.891.977 1.988 1.981zM8.059 24.962l3.051.071-1.19-2.541zM2.569 14.352l2.816-1.176-2.121-1.837zM56.631 17.945c.027.151.087.388.192.675.258.703.65 1.321 1.22 1.751.731.552 1.657.708 2.753.39l-.292-.875c-.831.241-1.456.136-1.944-.232-.397-.299-.692-.765-.891-1.308a4.198 4.198 0 0 1-.148-.513l-.889.113zM51.034 20.853a4.148 4.148 0 0 1-.168.681c-.233.711-.603 1.343-1.158 1.793-.711.577-1.631.766-2.737.486l.261-.885c.838.212 1.46.085 1.934-.3.386-.313.665-.789.845-1.339a3.947 3.947 0 0 0 .131-.518l.893.082zM39.84 3.987c.05.145.146.37.295.637.364.654.848 1.203 1.479 1.539.808.431 1.748.44 2.78-.045l-.425-.819c-.783.368-1.417.362-1.956.074-.439-.234-.804-.648-1.085-1.153a4.016 4.016 0 0 1-.227-.483l-.861.251zM17.116 1.941c.079-.131.22-.331.421-.561.492-.564 1.08-1 1.766-1.198.88-.253 1.801-.067 2.71.622l-.586.713c-.689-.523-1.311-.648-1.898-.48-.478.137-.921.466-1.301.902a3.91 3.91 0 0 0-.322.426l-.79-.425zM12.866 16.325c.143-.055.377-.125.678-.183.735-.141 1.467-.123 2.129.144.849.342 1.461 1.056 1.752 2.159l-.901.201c-.221-.836-.634-1.318-1.2-1.546-.461-.186-1.013-.199-1.581-.09a4.056 4.056 0 0 0-.516.137l-.361-.821z"></path><path fill="#f3f3f3" d="M23.086 17.208c0-.252.16-.587.354-.745l10.606-8.632a.587.587 0 0 1 .708 0l10.606 8.632c.196.159.354.492.354.745v14.336a.455.455 0 0 1-.457.456H23.543a.457.457 0 0 1-.457-.456V17.208z"></path><path fill="#fff" d="M26.514 10.743h16.229v14.171H26.514V10.743z"></path><path fill="#6dc067" d="M26.514 10.743v16.229h16.229V10.743H26.514zm-.457-.457H43.2v17.143H26.057V10.286z"></path><path fill="#f3f3f3" d="M33.175 24.52l-9.612 7.209V17.311zM36.116 24.373l9.395-7.11-.254 14.544z"></path><path fill="#979797" d="M23.543 31.542l21.714.001V17.609l-10.26 7.82a1.086 1.086 0 0 1-1.283-.001l-10.171-7.814v13.928zm-.457-14.398c0-.253.164-.333.362-.18l10.545 8.101a.63.63 0 0 0 .727 0l10.629-8.101c.202-.154.365-.073.365.18v14.398a.456.456 0 0 1-.457.458H23.543a.458.458 0 0 1-.457-.458V17.144z"></path><path fill="#f3f3f3" d="M34.4 23.314l10.171 8.229H24.228z"></path><path fill="#979797" d="M34.493 23.501c-.03-.024-.109-.024-.137-.002l-9.975 8.044h20.042l-9.93-8.042zm-.424-.358a.59.59 0 0 1 .711.003l10.577 8.565c.197.159.154.289-.101.289H23.542c-.252 0-.297-.129-.102-.286l10.629-8.57z"></path><path fill="#6dc067" d="M34.514 20.8a3.657 3.657 0 1 0 0-7.313 3.657 3.657 0 0 0 0 7.313zm0 .457a4.114 4.114 0 1 1 0-8.228 4.114 4.114 0 0 1 0 8.228z"></path><path fill="#6dc067" d="M33.995 18.736l.174.174 2.486-2.869-.345-.299-2.325 2.683.334-.012-1.252-1.252-.323.323z"></path></symbol><symbol id="info" viewBox="0 0 32 32"><title>info</title><path d="M16 29.091c7.23 0 13.091-5.861 13.091-13.091S23.23 2.909 16 2.909C8.77 2.909 2.909 8.77 2.909 16S8.77 29.091 16 29.091zM16 32C7.163 32 0 24.837 0 16S7.163 0 16 0s16 7.163 16 16-7.163 16-16 16z"></path><path d="M17.455 14.545V13.09h-4.364v2.909H16l-1.455-1.455v9.455h2.909v-1.455zM14.545 7.273h2.909v2.909h-2.909V7.273z"></path><path d="M17.939 24.727h.97v-2.909h-5.818v2.909h.97z"></path></symbol><symbol id="like" viewBox="0 0 22 20"><path d="M11.984 5.33h-1.968C11.349-2.152 22-1.6 22 5.998c0 3.4-2.006 6.71-5.311 9.85a33.48 33.48 0 0 1-5.175 4.008 1 1 0 0 1-1.028 0c-.089-.053-.245-.15-.46-.29a33.48 33.48 0 0 1-4.714-3.717C2.005 12.708 0 9.398 0 5.998 0-1.6 10.651-2.153 11.984 5.33z"></path></symbol><symbol id="like_outline" viewBox="0 -1 22 21"><path d="M11.984 5.33h-1.968C11.349-2.152 22-1.6 22 5.998c0 3.4-2.006 6.71-5.311 9.85a33.48 33.48 0 0 1-5.175 4.008 1 1 0 0 1-1.028 0c-.089-.053-.245-.15-.46-.29a33.48 33.48 0 0 1-4.714-3.717C2.005 12.708 0 9.398 0 5.998 0-1.6 10.651-2.153 11.984 5.33zM6.69 14.398a31.507 31.507 0 0 0 4.825 3.743h-1.028a29.388 29.388 0 0 0 1.494-1.002 31.507 31.507 0 0 0 3.331-2.74C18.256 11.6 20 8.723 20 5.998c0-5.09-7.1-5.46-8.016-.318-.195 1.1-1.773 1.1-1.968 0C9.099.54 2 .908 2 5.998c0 2.726 1.744 5.602 4.689 8.4z"></path></symbol><symbol id="play" viewBox="0 0 35 35"><path d="M35 17.5C35 27.165 27.164 35 17.5 35 7.834 35 0 27.165 0 17.5S7.834 0 17.5 0C27.164 0 35 7.835 35 17.5zm-22.826 6.848L25.87 17.5l-13.696-6.848v13.696z"></path></symbol><symbol id="posts" viewBox="0 0 29 32"><title>posts</title><path d="M2.909 14.545V29.09h23.273V14.545H2.909zM0 13.101c0-.809.662-1.464 1.443-1.464h26.206c.797 0 1.443.654 1.443 1.464v17.435c0 .809-.662 1.465-1.443 1.465H1.443A1.453 1.453 0 0 1 0 30.536V13.101z"></path><path d="M11.636 17.455l7.273 4.364-7.273 4.364zM2.909 5.818h23.273v2.909H2.909V5.818zM5.818 0h17.455v2.909H5.818V0z"></path></symbol><symbol id="posts_notification" viewBox="0 0 22 22"><g fill="none" fill-rule="evenodd"><rect></rect><path d="M13.528 8A5.985 5.985 0 0 0 18 10a5.99 5.99 0 0 0 2-.341v11.334c0 .556-.455 1.007-.992 1.007H.992A.999.999 0 0 1 0 20.993V9.007C0 8.45.455 8 .992 8h12.536zM12 4H2v2h10.341A5.99 5.99 0 0 1 12 4zm1.528-4H4v2h8.341a5.996 5.996 0 0 1 1.187-2zM2 20h16V10H2v10zm6-8l5 3-5 3v-6z" fill="#FFF" fill-rule="nonzero"></path><circle fill="#D11C27" cx="18" cy="4" r="4"></circle></g></symbol><symbol id="share" viewBox="0 0 37 32"><title>share</title><path d="M19.81 7.619h-3.048c-8.418 0-15.238 6.828-15.238 15.25v7.638c3.156-4.619 8.465-7.65 14.49-7.65h3.796v-3.048h-3.796a20.54 20.54 0 0 0-14.49 5.957v3.798l.557.172a17.614 17.614 0 0 1 2.49-2.638v-4.23c0-6.74 5.457-12.202 12.19-12.202h3.048V7.618z"></path><path d="M36.013 14.059c.745.61.745 1.749 0 2.358L19.251 30.129c-.995.814-2.489.106-2.489-1.179V1.527c0-1.285 1.494-1.993 2.489-1.179L36.013 14.06zM19.81 19.81v6.095l13.714-10.667L19.81 4.571v6.095h-3.048v9.143h3.048z"></path></symbol><symbol id="thin_cog" viewBox="0 0 31 32"><title>sharp_edge_cog</title><path d="M30.609 16.626l-4.434 1.266a11.088 11.088 0 0 1-1.354 3.266l2.24 4.033-1.869 1.869-4.033-2.24a11.073 11.073 0 0 1-3.174 1.331l-1.315 4.456h-2.729l-1.314-4.456a11.112 11.112 0 0 1-3.097-1.284L5.448 27.09l-1.929-1.93 2.222-4.082a11.118 11.118 0 0 1-1.284-3.096L0 16.667v-2.729l4.457-1.314a11.106 11.106 0 0 1 1.284-3.096L3.519 5.446l1.929-1.93L9.53 5.738a11.122 11.122 0 0 1 3.187-1.307l1.266-4.434h2.644l1.266 4.434c1.173.278 2.27.74 3.266 1.355l4.033-2.241 1.869 1.869-2.24 4.033a11.078 11.078 0 0 1 1.354 3.265l4.434 1.267v2.644zm-15.305 7.026a8.348 8.348 0 1 0 0-16.696 8.348 8.348 0 0 0 0 16.696z"></path></symbol><symbol id="twitter" viewBox="0 0 22 18"><path d="M6.919 17.876c8.301 0 12.842-6.878 12.842-12.842 0-.196 0-.39-.013-.584A9.184 9.184 0 0 0 22 2.114a9.01 9.01 0 0 1-2.592.71A4.53 4.53 0 0 0 21.392.327a9.046 9.046 0 0 1-2.866 1.096 4.518 4.518 0 0 0-7.692 4.117A12.815 12.815 0 0 1 1.53.824 4.517 4.517 0 0 0 2.93 6.849 4.48 4.48 0 0 1 .88 6.284v.057c0 2.149 1.515 4 3.621 4.425a4.506 4.506 0 0 1-2.038.077 4.519 4.519 0 0 0 4.217 3.135A9.057 9.057 0 0 1 0 15.848a12.778 12.778 0 0 0 6.919 2.025"></path></symbol><symbol id="vimeo" viewBox="0 0 22 19"><path d="M21.99 4.275c-.099 2.08-1.594 4.927-4.488 8.542-2.99 3.775-5.521 5.663-7.59 5.663-1.284 0-2.369-1.149-3.256-3.449L4.881 8.708c-.658-2.299-1.364-3.45-2.12-3.45-.164 0-.74.337-1.726 1.007L0 4.97a270.681 270.681 0 0 0 3.21-2.78C4.658.975 5.746.336 6.47.27c1.712-.16 2.766.977 3.162 3.41.427 2.625.723 4.257.889 4.896.494 2.178 1.037 3.266 1.63 3.266.46 0 1.152-.706 2.075-2.12.92-1.412 1.414-2.487 1.48-3.225.132-1.22-.361-1.83-1.48-1.83-.527 0-1.07.117-1.629.35 1.082-3.44 3.147-5.11 6.196-5.014 2.26.064 3.327 1.488 3.196 4.271"></path></symbol><symbol id="youtube" viewBox="0 0 24 17"><path d="M9.517 11.626L9.516 4.84l6.481 3.405-6.48 3.38zm14.23-7.962S23.514 2 22.795 1.267C21.882.305 20.859.301 20.39.244 17.034 0 11.999 0 11.999 0h-.01S6.952 0 3.596.244c-.47.057-1.491.061-2.404 1.023C.473 2 .24 3.664.24 3.664S0 5.62 0 7.574v1.831c0 1.955.24 3.91.24 3.91s.234 1.664.953 2.396c.913.962 2.111.932 2.645 1.033 1.919.185 8.156.242 8.156.242s5.04-.007 8.397-.252c.468-.056 1.49-.06 2.403-1.023.72-.732.954-2.397.954-2.397s.24-1.954.24-3.909V7.573c0-1.954-.24-3.909-.24-3.909z"></path></symbol></svg></div>
+  <!-- ngIf: show_event --><section class="event_toolbar embed_view ng-scope ng-isolate-scope" ng-class="{&#39;draft_event&#39; : eventData.isDraft}" ng-if="show_event" style="">
+    <!-- ngIf: showHeader() --><div class="event_header_inner is_visitor ng-scope no_gradient ng-hide" ng-class="{&#39;fade_away&#39; : eventData.is_live &amp;&amp; !showEventHeader &amp;&amp; drawerNotOpen, &#39;no_gradient&#39; : sharedVar.autoPlay === &#39;false&#39; || !isLiveAllowedConsideringPlans()}" ng-show="showHeaderOnEmbedPost" ng-if="showHeader()" style="">
+        <!-- ngIf: eventData.is_live && sharedVar.autoPlay !== 'false' && isLiveAllowedConsideringPlans() -->
+        <div class="toolbar_right_icons restrict_width_embed disappear" ng-class="{&#39;disappear&#39; : (currentPage || (eventData.isPasswordProtected() &amp;&amp; !eventData.hasPasswordToken()))}" style="">
+            <!-- ngIf: isFreeTrial -->
+            <!-- ngIf: ::!disableLike() -->
+            <!-- ngIf: eventData.hasProducerAccess() && !eventData.isDraft && !eventData.isWhiteLabeled() && !(eventData.isPrivate() && !eventData.isEmbeddable()) -->
+            <!-- ngIf: enable_drawers_embed --><a href="javascript:void(0);" ng-click="headerToggleDrawer(&#39;info&#39;, &#39;baseEvent.content&#39;)" class="event_icon ls_tooltip_parent hide_in_mobile hide_in_mobile_embed ng-scope" ng-class="{&#39;active&#39; : sharedVar.activeDrawer === &#39;info&#39;}" ng-if="enable_drawers_embed">
+                <svg class="svg_icon svg_info inverse_transition"><use xlink:href="#info"></use></svg>
+                <span class="ls_tooltip" data-tooltip-text="About"></span>
+            </a><!-- end ngIf: enable_drawers_embed -->
+            <!-- ngIf: enable_drawers_embed && feedRef.feeds.length --><a href="javascript:void(0);" ng-click="headerToggleDrawer(&#39;feed&#39;, &#39;baseEvent.content&#39;)" class="event_icon ls_tooltip_parent hide_in_mobile hide_in_mobile_embed ng-scope" ng-class="{&#39;active&#39; : sharedVar.activeDrawer === &#39;feed&#39;, &#39;notify&#39; : feedStatus.newFeedAdded}" ng-if="enable_drawers_embed &amp;&amp; feedRef.feeds.length">
+                <svg class="svg_icon svg_posts inverse_transition"><use xlink:href="#posts"></use></svg>
+                <svg class="svg_icon svg_posts_notification inverse_transition"><use xlink:href="#posts_notification"></use></svg>
+                <span class="ls_tooltip" data-tooltip-text="Event Posts"></span>
+            </a><!-- end ngIf: enable_drawers_embed && feedRef.feeds.length -->
+            <!-- ngIf: showChatOption -->
+        </div>
+    </div><!-- end ngIf: showHeader() -->
+
+    <!-- timeout refresh modal -->
+    <div timeout-refresh="" class="ng-isolate-scope"><!-- ngIf: modalTimeoutRefresh.render -->
+</div>
+    <!-- timeout refresh modal ends -->
+
+</section><!-- end ngIf: show_event -->
+  <!-- ngIf: is_password_protected -->
+  <!-- ngIf: is_geo_blocked -->
+  <!-- ngIf: show_event || lead_capture_in_progress --><section class="event_content js-event_content_section embed_view ng-scope ng-isolate-scope" ng-switch="featureBasedEventStatus()" ng-if="show_event || lead_capture_in_progress" lead-capture-in-progress="lead_capture_in_progress" touch-events="" data-on-touch-start="toggleHeaderVisibilityOnTouch()" style="">
+    <!-- ngSwitchWhen: live -->
+    <!-- ngSwitchDefault: --><div class="event_section newly_created_event js-newly_created_event ng-scope" ng-switch-default="" ng-hide="sharedVar.hideEventDetails" ng-class="sharedVar.activeDrawer">
+        <div class="event_image_blur js-event_image_blur" ng-style="(eventData.background.color || !eventData.hasPoster()) &amp;&amp; customBackground()" ng-class="{&#39;png_overlay&#39; : (eventData.background.color || !eventData.hasPoster())}">
+    <!-- ngIf: eventData.hasPoster() && !eventData.background.color --><div class="blur_poster_wrapper ng-scope blur_background_image" ng-if="eventData.hasPoster() &amp;&amp; !eventData.background.color" canvas-image-blur="" style="background-image: url(&quot;https://img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4_170x96.jpg&quot;);">
+        <img class="blur_poster" ng-src="//img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4_170x96.jpg" src="./CSS In-Depth, v3 on Livestream_files/3271b195-ac5d-4436-9a83-9cf8c4571fb4_170x96.jpg">
+        
+    </div><!-- end ngIf: eventData.hasPoster() && !eventData.background.color -->
+</div>
+        <div class="event_details_wrapper ng-isolate-scope" lead-capture-wrapper="" lead-capture-in-progress="lead_capture_in_progress" poster-url="eventData.poster([&#39;medium_url&#39;, &#39;small_url&#39;])" post-title="eventData.full_name">
+    <!-- ngIf: lead_capture_in_progress -->
+    <!-- ngIf: !lead_capture_in_progress --><div class="event_details ng-scope" ng-if="!lead_capture_in_progress">
+        <div class="event_section_left">
+            <div class="locked_event_info info_top" ng-transclude="infoTop"><info-top class="ng-scope">
+                <div ng-switch="eventData.status()">
+                    <!-- ngSwitchWhen: future -->
+                    <!-- ngSwitchWhen: in_progress -->
+                    <!-- ngSwitchWhen: past --><div class="editable_div ng-scope" ng-switch-when="past">
+                        <span class="event_states ng-binding" ng-bind="&#39;Ended &#39; + (eventData.endTime() | formatDatetime: &#39;end&#39;)">Ended Aug 23rd, 2019 </span>
+                    </div><!-- end ngSwitchWhen: -->
+                    <!-- ngSwitchWhen: countdown -->
+                    <!-- ngSwitchWhen: draft -->
+                </div>
+            </info-top></div>
+            <div class="event_name_wrap">
+                <div class="event_name ng-binding ng-isolate-scope" data-ellipsis="" internal-control="sharedVar" ellipsis-name="Fullname" ellipsis-on-character="true" truncate-character="3" height-offset="10" ng-bind="postTitle" data-overflowed="false">CSS In-Depth, v3</div>
+            </div>
+            <div class="info_bottom_wrapper">
+                <div class="locked_event_info info_bottom" ng-transclude="infoBottom"><info-bottom class="ng-scope">
+                <div class="account_location">
+                    <!-- ngIf: !eventData.isWhiteLabeled() -->
+                    <div class="event_location ng-hide" ng-show="info_drawer_enabled">
+                        <span ng-show="location.formatted_address" class="location_pin_icon common_icon ng-hide"></span>
+                        <!-- ngIf: has_location -->
+                        <!-- ngIf: !has_location && !location -->
+                    </div>
+                </div>
+                <!-- ngIf: eventData.description -->
+                <div class="upcoming_event_notification" ng-class="{&#39;watch_live_active&#39; : featureBasedEventStatus() === &#39;live_embed_disabled&#39;, &#39;no_donation_icon&#39; : !(([&#39;future&#39;, &#39;countdown&#39;].indexOf(eventData.status()) &gt; -1) &amp;&amp; showGetNotified()) &amp;&amp; !watchAgain() &amp;&amp; featureBasedEventStatus() !== &#39;live_embed_disabled&#39;}">
+                    <a href="javascript:void(0);" class="get_notified_button button thin_border_button small_button ng-hide" ng-click="sharedVar.showCalendarNotification()" ng-show="displayNotificationButton()">
+                        GET NOTIFIED
+                    </a>
+                    <a class="watch_again_link black_play_icon event_icon" href="javascript:void(0)" ng-show="watchAgain()" ng-click="replayStream()">
+                        WATCH AGAIN
+                    </a>
+                    <!-- ngIf: featureBasedEventStatus() === 'live_embed_disabled' -->
+                    <a href="javascript:void(0);" class="donation_button button thin_border_button donation_animated_button ng-hide" ng-show="sharedVar.showDonationButton" ng-click="sharedVar.openDonateButton()">Donate</a>
+                    <a href="javascript:void(0);" class="button thin_border_button event_icon donation_icon donation_animated_button ng-hide" ng-show="sharedVar.showDonationButton" ng-click="sharedVar.openDonateButton()"></a>
+                    <div calendar-notification="" ng-show="(eventData.status() === &#39;future&#39; || eventData.status() === &#39;countdown&#39;) &amp;&amp; showGetNotified()" class="ng-isolate-scope ng-hide"><!-- ngIf: modalCalendarNotification.render -->
+</div>
+                </div>
+            </info-bottom></div>
+            </div>
+        </div>
+        <div class="event_section_right" ng-class="{&#39;portait_poster&#39; : eventData.isPortraitPoster()}">
+            <div class="event_poster_wrapper" ng-style="{&#39;background-image&#39;:&#39;url(&#39; + (posterUrl | stripProtocol) + &#39;)&#39;}" style="background-image: url(&quot;//img.new.livestream.com/events/000000000085da0d/3271b195-ac5d-4436-9a83-9cf8c4571fb4_640x360.jpg&quot;);">
+            </div>
+        </div>
+    </div><!-- end ngIf: !lead_capture_in_progress -->
+</div>
+        <!-- ngIf: !eventData.isWhiteLabeled() -->
+    </div><!-- end ngSwitchWhen: -->
+    <!-- ngIf: sharedVar.activeDrawer === 'feed' -->
+    <!-- ngIf: sharedVar.activeDrawer === 'info' -->
+    <!-- ngIf: sharedVar.activeDrawer === 'editor' || sharedVar.activeDrawer === 'editor_forms' -->
+    <!-- ngIf: eventData.status() === 'live' && eventData.live_chat_enabled && !lead_capture_in_progress -->
+    <manage-blocked-accounts class="ng-isolate-scope"><!-- ngIf: modalBlockedAccountsModal.render -->
+</manage-blocked-accounts>
+    <!-- uiView: postDetailDrawer --><div ui-view="postDetailDrawer" class="post_detail_drawers ng-scope" ng-class="{&#39;animate_post_details_drawer&#39; : sharedVar.enableAnimation, &#39;relative_positioned&#39; : sharedVar.previousDrawer === &#39;feed&#39; || sharedVar.previousDrawer === &#39;editor&#39;}">
+    </div>
+    <div data-error-box="" class="ng-isolate-scope"><!-- ngIf: modalErrorBox.render -->
+</div>
+    <!-- uiView: modal --><div ui-view="modal" class="embed_view ng-scope" ng-show="sharedVar.isPostDetailOpen" ng-swipe-left="sharedVar.swipeLeft()" ng-swipe-right="sharedVar.swipeRight()" style=""><div data-event-post-video-detail="" class="ng-scope ng-isolate-scope"><div class="post_detail_comment_wrapper" ng-mousemove="showPostNavArrow()">
+    <!-- ngIf: (showLabel || showVodDetail) && sharedVar.useDefaultHeader -->
+    <div class="modal_overlay post_detail_overlay video_detail_overlay embed_view  open" ng-class="{&#39;open&#39; : modalEventPostVideoDetail.show, &#39;close&#39; : modalEventPostVideoDetail.show === false, &#39;hide_player_icon&#39; : sharedVar.postDetailDrawerStatus.hidePlayerIcon}" style="">
+        <!-- video post player modal -->
+        <!-- ngIf: selectedFeedData.data --><div class="video_detail_modal ng-scope" ng-if="selectedFeedData.data">
+           <div ls-vod-player="" data-flash-container="postVideoContent" data-is-embed="true" data-player-name="&#39;video_post&#39;" data-video-id="selectedFeedData.data.id" data-is-video-embed="isVideoEmbed" class="ng-isolate-scope"><div class="player_wrapper js-vod_player_wrapper" id="postVideoPlayerContainer">
+    <div class="player_inner" id="js-vod_player_inner" ng-show="readyForEmbed" style="width: 100%; height: 100%;">
+        <!-- ngIf: playbackType === 'flash' -->
+        <!-- ngIf: playbackType === 'pjs' --><div class="js-playerjs_playback playerjs_player_wrapper ng-scope" ng-if="playbackType === &#39;pjs&#39;" ng-init="initializePlayerJs()" style="">
+            <!-- ngIf: showComponets && isFreeTrial && isEmbed -->
+            <!-- ngIf: showComponets && eventData.hasProducerAccess() --><div data-like-component="" data-player-name="playerOptions.playerName" data-component-index="1" data-is-embed="isEmbed" data-is-video-embed="isVideoEmbed" ng-if="showComponets &amp;&amp; eventData.hasProducerAccess()" class="ng-scope ng-isolate-scope" style=""></div><!-- end ngIf: showComponets && eventData.hasProducerAccess() -->
+            <!-- ngIf: showComponets && eventData.hasProducerAccess() --><div data-share-component="" data-player-name="playerOptions.playerName" data-component-index="2" data-is-embed="isEmbed" data-is-video-embed="isVideoEmbed" ng-if="showComponets &amp;&amp; eventData.hasProducerAccess()" class="ng-scope ng-isolate-scope"></div><!-- end ngIf: showComponets && eventData.hasProducerAccess() -->
+            <!-- ngIf: showComponets --><div data-info-component="" data-player-name="playerOptions.playerName" data-component-index="3" data-is-embed="isEmbed" ng-if="showComponets" class="ng-scope ng-isolate-scope"></div><!-- end ngIf: showComponets -->
+            <!-- ngIf: showComponets && eventData.hasProducerAccess() --><div data-comments-component="" data-player-name="playerOptions.playerName" data-component-index="4" data-is-embed="isEmbed" ng-if="showComponets &amp;&amp; eventData.hasProducerAccess()" class="ng-scope ng-isolate-scope"></div><!-- end ngIf: showComponets && eventData.hasProducerAccess() -->
+            <!-- ngIf: showComponets && eventData.isOwner() && !isEmbed -->
+            <!-- ngIf: showComponets && isEmbed && !isVideoEmbed --><div data-close-component="" data-player-name="playerOptions.playerName" data-component-index="6" ng-if="showComponets &amp;&amp; isEmbed &amp;&amp; !isVideoEmbed" class="ng-scope ng-isolate-scope"></div><!-- end ngIf: showComponets && isEmbed && !isVideoEmbed -->
+        <div class="lsp-director"><div class="director-view"><div data-reactroot="" class="director-root"><!-- react-empty: 2 --></div></div><div class="core-view"><div data-reactroot="" class="lsp-video-player" data-component="root"><div class="dimension-layer"><div class="scroll-listener" style="bottom: 0px; left: 0px; position: absolute; right: 0px; overflow: hidden; top: 0px; visibility: hidden; z-index: -1;"><div class="scroll-listener__expander" style="bottom: 0px; left: 0px; position: absolute; right: 0px; overflow: hidden; top: 0px; visibility: hidden; z-index: -1;"><div class="expander__body" style="left: 0px; position: absolute; transition: all 0s ease 0s; top: 0px; width: 15360px; height: 8640px;"></div></div><div class="scroll-listener__shrinker" style="bottom: 0px; left: 0px; position: absolute; right: 0px; overflow: hidden; top: 0px; visibility: hidden; z-index: -1;"><div class="shrinker__body" style="left: 0px; position: absolute; transition: all 0s ease 0s; top: 0px; width: 200%; height: 200%;"></div></div></div></div><div class="video-layer"><video class="video-view video-mse" src="blob:https://livestream.com/8a091d41-4f68-46ec-8b9a-c1a4dc23d787"></video></div><div class="lsp-thumbnail lsp-invisible"><div class="lsp-thumbnail__view" style="background-image: url(&quot;https://img.new.livestream.com/events/000000000085da0d/0077bd5e-4597-435f-8f71-9dc8c58244bd_10440.jpg&quot;);"></div></div><div class="captions-compute-container"></div><!-- react-empty: 7 --><div class="ad-screen lsp-hidden"></div><div class="shade-layer shade-layer--top lsp-visible"></div><div class="shade-layer shade-layer--bottom lsp-visible"></div><div class="hit-overlay" data-component="hitOverlay"><div class="hit-overlay__play lsp-hidden"><div class="icon-sprite"><svg viewBox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="overlay-play">
+            <circle id="overlay-circle-background" fill-opacity="0.6" fill="#000000" cx="39" cy="39" r="34"></circle>
+            <polygon id="overlay-icon-play" fill="#FAFAFA" points="55 39 29 52 29 26"></polygon>
+        </g>
+</svg></div></div></div><div class="control-bar lsp-visible" data-component="controlBar"><div class="seek-bar"><div class="lsp-progress-bar"><div class="lsp-progress-bar__lines" style="border-left-width: 0px; border-right-width: 0px;"><div class="progress-line" style="width: 100%;"></div><div class="progress-line" style="width: 1.04389%; background-color: rgb(207, 32, 46);"></div></div></div><div class="seek-bar__highlight"><div class="seek-bar__progress-pointer lsp-hidden" style="transform: translateX(1022px);"></div></div></div><div class="controls"><div class="layout"><div class="playback-control" data-component="playbackControl"><div class="play-holder lsp-hidden mouse-disabled"><div class="icon-sprite"><svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-play" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M10,8 L10,22 L21,15 L10,8 Z"></path>
+        </g>
+</svg></div></div><div class="pause-holder mouse-disabled"><div class="icon-sprite"><svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-pause" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M9,22 L13,22 L13,8 L9,8 L9,22 L9,22 Z M17,8 L17,22 L21,22 L21,8 L17,8 L17,8 Z"></path>
+        </g>
+</svg></div></div></div><div class="volume-control" data-component="volumeControl"><div class="volume-icon mouse-disabled"><div class="volume-mute-holder"><div class="icon-sprite"><svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-volume-mute" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M6,12 L6,18 L10,18 L15,23 L15,7 L10,12 L6,12 L6,12 Z"></path>
+            <path d="M21,13.4 L18.6,11 L17,12.6 L19.4,15 L17,17.4 L18.6,19 L21,16.6 L23.4,19 L25,17.4 L22.6,15 L25,12.6 L23.4,11 L21,13.4 L21,13.4 Z"></path>
+        </g>
+</svg></div></div><div class="volume-semi-holder lsp-hidden"><div class="icon-sprite"><svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-volume-semi" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M6,12 L6,18 L10,18 L15,23 L15,7 L10,12 L6,12 L6,12 Z"></path>
+            <path d="M17,20 C18.7659048,19.1584163 20,17.2364077 20,15 C20,12.7635923 18.7659048,10.8415837 17,10 L17,12.5609426 C17.6137494,13.1601199 18,14.0308592 18,15 C18,15.9691408 17.6137494,16.8398801 17,17.4390574 L17,20 Z"></path>
+        </g>
+</svg></div></div><div class="volume-full-holder lsp-hidden"><div class="icon-sprite"><svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-volume-full" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M6,12 L6,18 L10,18 L15,23 L15,7 L10,12 L6,12 L6,12 Z"></path>
+            <path d="M17,20 C18.7659048,19.1584163 20,17.2364077 20,15 C20,12.7635923 18.7659048,10.8415837 17,10 L17,12.5609426 C17.6137494,13.1601199 18,14.0308592 18,15 C18,15.9691408 17.6137494,16.8398801 17,17.4390574 L17,20 Z"></path>
+            <path d="M17,24 C21.0079774,23.067433 24,19.392007 24,15 C24,10.607993 21.0079774,6.93256697 17,6 L17,8.11937964 C19.8914889,9.00179473 22,11.7484062 22,15 C22,18.2515938 19.8914889,20.9982053 17,21.8806204 L17,24 Z"></path>
+        </g>
+</svg></div></div></div></div><div class="volume-slider volume-slider--collapsed"><div class="lsp-progress-bar"><div class="lsp-progress-bar__lines" style="border-left-width: 4px; border-right-width: 4px;"><div class="progress-line" style="width: 100%;"></div><div class="progress-line" style="width: 0%; background-color: rgb(207, 32, 46);"></div></div></div></div><div class="time-indicator"><span class="time-indicator__current">04:48</span><span class="time-indicator__separator"> / </span><span class="time-indicator__duration">7:40:57</span></div><div class="expander"></div><!-- react-empty: 102 --><!-- react-empty: 38 --><div class="settings-control" data-component="settingsControl"><div class="settings-holder mouse-disabled"><div class="icon-sprite"><svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><clippath id="iconSettingsMask"><polygon points="24 6 6 6 6 24 24 24 24 19 15 19 15 11 24 11"></polygon></clippath></defs><g id="iconSettings" fill="#FFFFFF" fill-rule="evenodd"><g id="iconSettingsCog" clip-path="url(#iconSettingsMask)"><path class="" d="M20.8581796,16.3027413 L23,15.6910769 L23,14.3092308 L20.8581179,13.6969801 C20.7049895,13.0054671 20.4325443,12.3588139 20.0634872,11.7797257 L21.1455385,9.83169231 L20.1683077,8.85446154 L18.2206451,9.93674904 C17.6413843,9.56752245 16.9945067,9.29496995 16.3027413,9.14182043 L15.6910769,7 L14.3089231,7 L13.6972587,9.14182043 C13.0209744,9.29154259 12.3875914,9.55538326 11.8183464,9.91210559 L9.84738462,8.83907692 L8.83907692,9.84769231 L9.91193316,11.8186216 C9.56325737,12.3750931 9.30333842,12.9928488 9.15201323,13.6520518 L7,14.2867692 L7,15.7132308 L9.15208323,16.3482531 C9.30344352,17.0074504 9.56339682,17.6251964 9.91210559,18.1816536 L8.83907692,20.1526154 L9.84738462,21.1612308 L11.8183664,20.087907 C12.3749042,20.4366632 12.992748,20.6966384 13.6520518,20.8479868 L14.2867692,23 L15.7132308,23 L16.3482531,20.8479168 C17.02274,20.6930458 17.6538305,20.4244859 18.2202743,20.0634872 L20.1683077,21.1455385 L21.1455385,20.1683077 L20.0634029,18.2204067 C20.4325523,17.6412069 20.7050511,16.9944118 20.8581796,16.3027413 L20.8581796,16.3027413 Z M15,19 C17.209139,19 19,17.209139 19,15 C19,12.790861 17.209139,11 15,11 C12.790861,11 11,12.790861 11,15 C11,17.209139 12.790861,19 15,19 L15,19 Z"></path></g><g id="iconSettings4k" class="lsp-hidden"><path id="letter-4" d="M16.5,12 L14,15.5 L14,16 L17,16 L17,18 L18,18 L18,12 L16.5,12 Z M17,13 L17,15 L15.5,15 L17,13 Z"></path><polygon id="letter-k" points="20 15 20 12 19 12 19 18 20 18 20 16 20.5 16 21.7999878 18 23 18 21.2857915 15.4286873 23 12.0018921 22 12.0018921 20.5 15"></polygon></g><g id="iconSettingsHd" class=""><polygon id="letter-h" points="16 15 16 12 15 12 15 18 16 18 16 16 18 16 18 18 19 18 19 12 18 12 18 15"></polygon><path id="letter-d" d="M21,17 L21,13 L22,13 C22.5522847,13 23,13.4433532 23,14.0093689 L23,15.9906311 C23,16.5480902 22.5561352,17 22,17 L21,17 Z M20,18 L20,12 L22,12 C23.1045695,12 24,12.8982606 24,13.9979131 L24,16.0020869 C24,17.1055038 23.1122704,18 22,18 L20,18 Z"></path></g></g></svg></div></div></div><div class="full-screen-control" data-component="fullScreenControl"><div class="full-screen-control__on mouse-disabled"><div class="icon-sprite"><svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-fullscreen-on" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M22,20 L19,20 L19,22 L23,22 L24,22 L24,17 L22,17 L22,20 L22,20 Z M7,8 L11,8 L11,10 L8,10 L8,13 L6,13 L6,8 L7,8 L7,8 Z M8,20 L8,17 L6,17 L6,21 L6,22 L11,22 L11,20 L8,20 L8,20 Z M24,9 L24,8 L19,8 L19,10 L22,10 L22,13 L24,13 L24,9 L24,9 Z" id="Rectangle-9"></path>
+        </g>
+</svg></div></div><div class="full-screen-control__off lsp-hidden mouse-disabled"><div class="icon-sprite"><svg viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-fullscreen-off" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M18,17 L22,17 L22,19 L19,19 L19,22 L17,22 L17,17 L18,17 L18,17 Z M11,11 L8,11 L8,13 L12,13 L13,13 L13,8 L11,8 L11,11 L11,11 Z M13,18 L13,22 L11,22 L11,19 L8,19 L8,17 L13,17 L13,18 L13,18 Z M19,11 L22,11 L22,13 L17,13 L17,12 L17,8 L19,8 L19,11 L19,11 Z" id="Rectangle-9"></path>
+        </g>
+</svg></div></div></div></div></div></div><div class="top-bar"><div class="top-bar__stream-trait"><!-- react-empty: 46 --></div><div class="top-bar__viewer-counter lsp-hidden"><div class="viewer-counter"><div class="viewer-counter__icon"><div class="icon-sprite"><svg viewBox="0 0 10 10" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-person" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M10,9.375 L10,9.79166667 C10,9.85339537 9.98071007,9.90354919 9.94212963,9.94212963 C9.90354919,9.98071007 9.85339537,10 9.79166667,10 L0.208333333,10 C0.14660463,10 0.0964508102,9.98071007 0.0578703704,9.94212963 C0.0192899306,9.90354919 0,9.85339537 0,9.79166667 L0,9.375 C0,8.9891956 0.129242535,8.66319578 0.387731481,8.39699074 C0.646220428,8.13078571 0.958717303,7.92245446 1.32523148,7.77199074 C1.69174566,7.62152703 2.05825434,7.47878154 2.42476852,7.34375 C2.7912827,7.20871846 3.10377957,7.03318009 3.36226852,6.81712963 C3.62075747,6.60107917 3.75,6.3425941 3.75,6.04166667 C3.71913565,6.01080231 3.67476881,5.96257749 3.61689815,5.89699074 C3.55902749,5.83140399 3.45871985,5.68480052 3.31597222,5.45717593 C3.17322459,5.22955133 3.04591105,4.9884272 2.93402778,4.7337963 C2.8221445,4.47916539 2.72183686,4.14930758 2.63310185,3.74421296 C2.54436684,3.33911834 2.5,2.92438484 2.5,2.5 C2.5,1.81326817 2.74498212,1.22492529 3.2349537,0.734953704 C3.72492529,0.244982118 4.31326817,0 5,0 C5.68673183,0 6.27507471,0.244982118 6.7650463,0.734953704 C7.25501788,1.22492529 7.5,1.81326817 7.5,2.5 C7.5,2.92438484 7.45756215,3.33718935 7.37268519,3.73842593 C7.28780822,4.1396625 7.18364259,4.4733783 7.06018519,4.73958333 C6.93672778,5.00578837 6.81327222,5.24112552 6.68981481,5.44560185 C6.56635741,5.65007818 6.46219178,5.80246863 6.37731481,5.90277778 L6.25,6.04166667 C6.25,6.3425941 6.37924253,6.60107917 6.63773148,6.81712963 C6.89622043,7.03318009 7.2087173,7.20871846 7.57523148,7.34375 C7.94174566,7.47878154 8.30825434,7.62152703 8.67476852,7.77199074 C9.0412827,7.92245446 9.35377957,8.13078571 9.61226852,8.39699074 C9.87075747,8.66319578 10,8.9891956 10,9.375 L10,9.375 Z" id="person"></path>
+        </g>
+</svg></div></div><div class="viewer-counter__count">0</div></div></div><div class="top-bar__title lsp-visible">CSS In-Depth, v3: Day 1</div><div class="top-bar__external-components lsp-visible" data-component="externalComponentContainer"><div class="external-component-wrapper"><a href="javascript:void(0)" class="circular_close_icon"></a><!-- react-text: 76 -->
+<!-- /react-text --></div></div></div><div class="sub-bar"><!-- react-empty: 55 --></div><div class="spinner-layer"><div class="spinner-layer__animation lsp-hidden"><div class="icon-sprite"><svg viewBox="0 0 68 68" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="spinner" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M34,68 C52.7776815,68 68,52.7776815 68,34 C68,15.2223185 52.7776815,0 34,0 C15.2223185,0 0,15.2223185 0,34 C0,52.7776815 15.2223185,68 34,68 Z M34,65 C51.1208272,65 65,51.1208272 65,34 C65,16.8791728 51.1208272,3 34,3 C16.8791728,3 3,16.8791728 3,34 C3,51.1208272 16.8791728,65 34,65 Z" id="donut" fill-opacity="0.2"></path>
+            <path d="M68,34 C68,15.2223185 52.7776815,0 34,0 L34,3 C51.1208272,3 65,16.8791728 65,34 L68,34 Z" id="segment"></path>
+        </g>
+</svg></div></div></div><div class="lsp-settings-window" style="width: 120px;"><div class="lsp-settings-window__content" style="transform: translateX(0px);"><div class="lsp-settings-window__main"><div class="lsp-rendition-list"><div class="lsp-rendition-list__item button-mode"><div class="lsp-rendition-list__body"><div class="lsp-rendition-list__label">1080p</div><div class="lsp-rendition-list__rendition"><div class="icon-sprite"><svg viewBox="0 0 16 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-rendition-hd" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M0,2.0085302 C0,0.899249601 0.894513756,0 1.99406028,0 L14.0059397,0 C15.1072288,0 16,0.901950359 16,2.0085302 L16,9.9914698 C16,11.1007504 15.1054862,12 14.0059397,12 L1.99406028,12 C0.892771196,12 0,11.0980496 0,9.9914698 L0,2.0085302 Z M5,6 L5,3 L4,3 L4,9 L5,9 L5,7 L7,7 L7,9 L8,9 L8,3 L7,3 L7,6 L5,6 Z M10,8 L10,4 L11,4 C11.5522847,4 12,4.44335318 12,5.0093689 L12,6.9906311 C12,7.54809015 11.5561352,8 11,8 L10,8 Z M9,9 L9,3 L11,3 C12.1045695,3 13,3.89826062 13,4.99791312 L13,7.00208688 C13,8.10550383 12.1122704,9 11,9 L9,9 Z"></path>
+        </g>
+</svg></div></div></div></div><div class="lsp-rendition-list__item button-mode"><div class="lsp-rendition-list__body"><div class="lsp-rendition-list__label">720p</div><div class="lsp-rendition-list__rendition"><div class="icon-sprite"><svg viewBox="0 0 16 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-rendition-hd" fill="#FFFFFF" fill-rule="evenodd">
+            <path d="M0,2.0085302 C0,0.899249601 0.894513756,0 1.99406028,0 L14.0059397,0 C15.1072288,0 16,0.901950359 16,2.0085302 L16,9.9914698 C16,11.1007504 15.1054862,12 14.0059397,12 L1.99406028,12 C0.892771196,12 0,11.0980496 0,9.9914698 L0,2.0085302 Z M5,6 L5,3 L4,3 L4,9 L5,9 L5,7 L7,7 L7,9 L8,9 L8,3 L7,3 L7,6 L5,6 Z M10,8 L10,4 L11,4 C11.5522847,4 12,4.44335318 12,5.0093689 L12,6.9906311 C12,7.54809015 11.5561352,8 11,8 L10,8 Z M9,9 L9,3 L11,3 C12.1045695,3 13,3.89826062 13,4.99791312 L13,7.00208688 C13,8.10550383 12.1122704,9 11,9 L9,9 Z"></path>
+        </g>
+</svg></div></div></div></div><div class="lsp-rendition-list__item button-mode"><div class="lsp-rendition-list__body"><div class="lsp-rendition-list__label">480p</div></div></div><div class="lsp-rendition-list__item button-mode"><div class="lsp-rendition-list__body"><div class="lsp-rendition-list__label">240p</div></div></div><div class="lsp-rendition-list__item lsp-rendition-list__item--active"><div class="lsp-rendition-list__body"><div class="lsp-rendition-list__label lsp-rendition-list__label--active">Auto</div></div><div class="lsp-rendition-list__check"><div class="icon-sprite"><svg viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <g id="icon-check" fill="#FFFFFF" fill-rule="evenodd">
+            <polygon id="Shape" points="0 7.19230769 1.4 5.84615385 4 8.30769231 10.6 2 12 3.34615385 4 11"></polygon>
+        </g>
+</svg></div></div></div></div><!-- react-empty: 63 --></div></div></div><div class="lsp-tooltip lsp-hidden lsp-invisible" style="transform: translateX(1032px) translateY(609px);"><div class="lsp-tooltip__text">6:31:36</div></div><!-- react-empty: 66 --></div></div></div></div><!-- end ngIf: playbackType === 'pjs' -->
+        <!-- ngIf: playbackType === 'mjs' -->
+        <!-- ngIf: playbackType === null -->
+    </div>
+</div>
+</div>
+        </div><!-- end ngIf: selectedFeedData.data -->
+        <!-- ngIf: sharedVar.cursorMovement && sharedVar.showLateralNavigation -->
+
+        <div class="dark_notification" ng-class="{&#39;vod_donation&#39; : isVideoEmbed}">
+            <!-- ngIf: sharedVar.showDonationButton && (showLabel || showVodDetail) && sharedVar.useDefaultHeader -->
+        </div>
+    </div>
+    <!-- ngIf: selectedFeedData --><div class="vod_comment_wrapper ng-scope" data-post-comment="" ng-if="selectedFeedData"><!-- ngIf: modalPostComment.render -->
+</div><!-- end ngIf: selectedFeedData -->
+    <!-- ngIf: selectedFeedData && selectedFeedData.data.description -->
+</div>
+</div></div>
+
+    <!-- ngIf: !lead_capture_in_progress --><div class="dark_notification ng-scope" ng-init="initHoverWatch($event)" ng-if="!lead_capture_in_progress">
+        <!-- ngIf: feedStatus.newFeedAdded && (featureBasedEventStatus() === 'live') -->
+        <!-- ngIf: sharedVar.showDonationButton && sharedVar.useDefaultLiveHeader && showPlayerPromptButton && featureBasedEventStatus() === 'live' -->
+    </div><!-- end ngIf: !lead_capture_in_progress -->
+</section><!-- end ngIf: show_event || lead_capture_in_progress -->
+  <!-- ngIf: is_embed_restricted -->
+  <!-- ngIf: check_mobile_geo_block -->
+  <!-- ngIf: show_event --><div ng-if="show_event" data-share-embed="" class="ng-scope ng-isolate-scope" style=""><!-- ngIf: modalShareEmbed.render -->
+</div><!-- end ngIf: show_event -->
+  <!-- ngIf: is_viewer_limit_reached -->
+</div>
+<div id="fb-root"></div>
+<div data-confirmation-box="" class="ng-isolate-scope"><!-- ngIf: modalConfirmationBox.render -->
+</div>
+<trial-expiration-box class="embed_override"></trial-expiration-box>
+
+
+        <!-- Loading MapBox separately since pre-compilation has issues -->
+        <script src="./CSS In-Depth, v3 on Livestream_files/mapbox.js" type="text/javascript"></script>
+        
+        <script>var require = {"waitSeconds":0};</script>
+        <script type="text/javascript" data-main="//cdn.livestream.com/deploy/apps/production/events/5.2.28/javascripts/event_embed.js" src="./CSS In-Depth, v3 on Livestream_files/require.js"></script>
+      
+    
+
+
+</body></html>
